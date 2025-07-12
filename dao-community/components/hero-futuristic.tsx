@@ -53,17 +53,17 @@ const PostProcessing = ({
     const uScanProgress = uniform(0);
     progressRef.current = uScanProgress;
 
-    // Create a red overlay that follows the scan line
+    // Create a cyan overlay that follows the scan line (matching DAO theme #1FB6FF)
     const scanPos = float(uScanProgress.value);
     const uvY = uv().y;
     const scanWidth = float(0.05);
     const scanLine = smoothstep(0, scanWidth, abs(uvY.sub(scanPos)));
-    const redOverlay = vec3(1, 0, 0).mul(oneMinus(scanLine)).mul(0.4);
+    const cyanOverlay = vec3(0.12, 0.71, 1.0).mul(oneMinus(scanLine)).mul(0.4);
 
-    // Mix the original scene with the red overlay
+    // Mix the original scene with the cyan overlay
     const withScanEffect = mix(
       scenePassColor,
-      add(scenePassColor, redOverlay),
+      add(scenePassColor, cyanOverlay),
       fullScreenEffect ? smoothstep(0.9, 1.0, oneMinus(scanLine)) : 1.0
     );
 
