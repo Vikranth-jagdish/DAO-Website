@@ -56,10 +56,11 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
   if (!mounted) return null
 
   return (
-    <div className="fixed left-0 right-0 z-[9999]" style={{ top: '20px' }}>
-      <div className="flex justify-center" style={{ paddingTop: '1.5rem', paddingBottom: '4rem' }}>
+    <div className="fixed left-0 right-0 z-[9999]" style={{ top: '40px' }}>
+      <div className="flex justify-center" style={{ paddingTop: '4rem', paddingBottom: '1.5rem' }}>
         <motion.div 
-          className="flex items-center gap-3 bg-black border border-accentCyan/30 py-2 px-2 rounded-full shadow-lg shadow-accentCyan/20 relative"
+          className="flex items-center bg-white/10 backdrop-blur-lg rounded-full shadow-lg shadow-white/20 relative border border-white/20"
+          style={{ gap: '2rem', padding: '1.5rem 3rem' }}
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{
@@ -80,9 +81,9 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
                 onMouseEnter={() => setHoveredTab(item.name)}
                 onMouseLeave={() => setHoveredTab(null)}
                 className={cn(
-                  "relative cursor-pointer text-sm font-semibold px-6 py-3 rounded-full transition-all duration-300 font-sharetech uppercase tracking-wider",
-                  "text-textSecondary hover:text-textPrimary",
-                  isActive && "text-accentCyan"
+                  "relative cursor-pointer text-base font-semibold px-8 py-4 rounded-full transition-all duration-300 font-sharetech uppercase tracking-wider",
+                  "text-black hover:text-gray-800",
+                  isActive && "text-black font-bold"
                 )}
               >
                 {isActive && (
@@ -144,7 +145,7 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
                   <motion.div
                     layoutId="anime-mascot"
                     className="absolute left-1/2 -translate-x-1/2 pointer-events-none"
-                    style={{ top: '60px' }}
+                    style={{ top: '-60px' }}
                     initial={false}
                     transition={{
                       type: "spring",
@@ -154,7 +155,7 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
                   >
                     <div className="relative w-12 h-12">
                       <motion.div 
-                        className="absolute w-10 h-10 bg-white rounded-full left-1/2 -translate-x-1/2 shadow-lg shadow-accentCyan/50 border-2 border-accentCyan"
+                        className="absolute w-10 h-10 bg-white rounded-full left-1/2 -translate-x-1/2 shadow-lg shadow-accentCyan/50"
                         animate={
                           hoveredTab ? {
                             scale: [1, 1.1, 1],
@@ -252,7 +253,8 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
                         </AnimatePresence>
                       </motion.div>
                       <motion.div
-                        className="absolute -bottom-1 left-1/2 w-4 h-4 -translate-x-1/2"
+                        className="absolute -bottom-1 w-4 h-4"
+                        style={{ left: '60%', transform: 'translateX(-50%)' }}
                         animate={
                           hoveredTab ? {
                             y: [0, -4, 0],
@@ -272,7 +274,7 @@ export function AnimeNavBar({ items, className, defaultActive = "Home" }: NavBar
                           }
                         }
                       >
-                        <div className="w-full h-full bg-white rotate-45 transform origin-center shadow-lg shadow-accentCyan/30 border border-accentCyan" />
+                        <div className="w-full h-full bg-white rotate-45 transform origin-center shadow-lg shadow-accentCyan/30" />
                       </motion.div>
                     </div>
                   </motion.div>
