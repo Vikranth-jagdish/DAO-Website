@@ -28,6 +28,7 @@ import {
 const TEXTUREMAP = { src: 'https://i.postimg.cc/XYwvXN8D/img-4.png' };
 const DEPTHMAP = { src: 'https://i.postimg.cc/2SHKQh2q/raw-4.webp' };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 extend(THREE as any);
 
 // Post Processing component
@@ -44,6 +45,7 @@ const PostProcessing = ({
   const progressRef = useRef({ value: 0 });
 
   const render = useMemo(() => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const postProcessing = new THREE.PostProcessing(gl as any);
     const scenePass = pass(scene, camera);
     const scenePassColor = scenePass.getTextureNode('output');
@@ -153,6 +155,7 @@ const Scene = () => {
     uniforms.uProgress.value = (Math.sin(clock.getElapsedTime() * 0.5) * 0.5 + 0.5);
     // Плавное появление
     if (meshRef.current && 'material' in meshRef.current && meshRef.current.material) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const mat = meshRef.current.material as any;
       if ('opacity' in mat) {
         mat.opacity = THREE.MathUtils.lerp(
@@ -188,7 +191,7 @@ export const Html = () => {
     // Только на клиенте: генерируем случайные задержки для глитча
     setDelays(titleWords.map(() => Math.random() * 0.07));
     setSubtitleDelay(Math.random() * 0.1);
-  }, [titleWords.length]);
+  }, [titleWords]);
 
   useEffect(() => {
     if (visibleWords < titleWords.length) {
@@ -229,6 +232,7 @@ export const Html = () => {
       <Canvas
         flat
         gl={async (props) => {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const renderer = new THREE.WebGPURenderer(props as any);
           await renderer.init();
           return renderer;

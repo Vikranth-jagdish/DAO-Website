@@ -75,18 +75,18 @@ const duration = 0.15
 const transition = { duration, ease: [0.32, 0.72, 0, 1], filter: "blur(4px)" }
 const transitionOverlay = { duration: 0.5, ease: [0.32, 0.72, 0, 1] }
 
-const Carousel = memo(
-  ({
+const Carousel = memo(function Carousel({
     handleClick,
     controls,
     cards,
     isCarouselActive,
   }: {
     handleClick: (imgUrl: string, index: number) => void
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     controls: any
     cards: string[]
     isCarouselActive: boolean
-  }) => {
+  }) {
     const isScreenSizeSm = useMediaQuery("(max-width: 640px)")
     const cylinderWidth = isScreenSizeSm ? 1100 : 1800
     const faceCount = cards.length
@@ -164,8 +164,8 @@ const Carousel = memo(
   }
 )
 
-const hiddenMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 30px, rgba(0,0,0,1) 30px, rgba(0,0,0,1) 30px)`
-const visibleMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0px, rgba(0,0,0,1) 0px, rgba(0,0,0,1) 30px)`
+// const hiddenMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 30px, rgba(0,0,0,1) 30px, rgba(0,0,0,1) 30px)`
+// const visibleMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0px, rgba(0,0,0,1) 0px, rgba(0,0,0,1) 30px)`
 function ThreeDPhotoCarousel() {
   const [activeImg, setActiveImg] = useState<string | null>(null)
   const [isCarouselActive, setIsCarouselActive] = useState(true)

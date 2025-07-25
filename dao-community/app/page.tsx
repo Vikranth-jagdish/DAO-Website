@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { Home as HomeIcon, Calendar, Users, Award, Target, Phone } from 'lucide-react';
 import HeroFuturistic from '../components/hero-futuristic';

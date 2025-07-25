@@ -19,7 +19,7 @@ const BeamShooter = ({
   className,
   delay = 0,
   duration = 2,
-  width = "100%",
+  width: _width = "100%", // eslint-disable-line @typescript-eslint/no-unused-vars
   height = "4px",
   fromColor = "#1FB6FF", // DAO Cyan
   viaColor = "#A76EFF",   // DAO Purple

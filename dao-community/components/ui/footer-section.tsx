@@ -37,7 +37,7 @@ export function FooterSection() {
                 { name: 'Twitter', color: 'accentPurple' },
                 { name: 'LinkedIn', color: 'accentMagenta' },
                 { name: 'GitHub', color: 'accentCyan' }
-              ].map((social, index) => (
+              ].map((social) => (
                 <motion.div
                   key={social.name}
                   whileHover={{ scale: 1.1 }}
