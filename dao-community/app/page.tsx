@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { Home as HomeIcon, Calendar, Users, Award, Target, Phone } from 'lucide-react';
 import HeroFuturistic from '../components/hero-futuristic';
 import { EventsSection } from '../components/ui/events-section';
 import { PastEventsSection } from '../components/ui/past-events-section';
@@ -10,6 +11,16 @@ import { SponsorsSection } from '../components/ui/sponsors-section';
 import { StudentBenefitsSection } from '../components/ui/student-benefits-section';
 import { VisionMissionSection } from '../components/ui/vision-mission-section';
 import { FooterSection } from '../components/ui/footer-section';
+import { AnimeNavBar } from '../components/ui/anime-navbar';
+
+const navItems = [
+  { name: "Home", url: "#home", icon: HomeIcon },
+  { name: "Events", url: "#events", icon: Calendar },
+  { name: "Past Events", url: "#past-events", icon: Users },
+  { name: "Sponsors", url: "#sponsors", icon: Award },
+  { name: "Benefits", url: "#benefits", icon: Target },
+  { name: "Contact", url: "#contact", icon: Phone },
+];
 
 export default function Home() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -26,6 +37,9 @@ export default function Home() {
 
   return (
     <div className="bg-daoBg relative">
+      {/* Anime Navbar */}
+      <AnimeNavBar items={navItems} defaultActive="Home" />
+      
       {/* Floating particles background for the entire page */}
       {isClient && (
         <div className="fixed inset-0 pointer-events-none z-0">
@@ -70,37 +84,37 @@ export default function Home() {
       />
 
       {/* Hero Section - Full screen 3D component */}
-      <div className="relative z-20">
+      <div id="home" className="relative z-20">
         <HeroFuturistic />
       </div>
 
       {/* Upcoming Events Section */}
-      <div className="relative z-30 mt-48">
+      <div id="events" className="relative z-30 mt-48">
         <EventsSection />
       </div>
 
       {/* Past Events Section */}
-      <div className="relative z-30">
+      <div id="past-events" className="relative z-30">
         <PastEventsSection />
       </div>
 
       {/* Sponsors Section */}
-      <div className="relative z-30">
+      <div id="sponsors" className="relative z-30">
         <SponsorsSection />
       </div>
 
       {/* Student Benefits Section */}
-      <div className="relative z-30">
+      <div id="benefits" className="relative z-30">
         <StudentBenefitsSection />
       </div>
 
       {/* Vision and Mission Section */}
-      <div className="relative z-30">
+      <div id="vision" className="relative z-30">
         <VisionMissionSection />
       </div>
 
       {/* Footer Section */}
-      <div className="relative z-30">
+      <div id="contact" className="relative z-30">
         <FooterSection />
       </div>
     </div>
