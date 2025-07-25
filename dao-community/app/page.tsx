@@ -4,6 +4,12 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import HeroFuturistic from '../components/hero-futuristic';
+import { EventsSection } from '../components/ui/events-section';
+import { PastEventsSection } from '../components/ui/past-events-section';
+import { SponsorsSection } from '../components/ui/sponsors-section';
+import { StudentBenefitsSection } from '../components/ui/student-benefits-section';
+import { VisionMissionSection } from '../components/ui/vision-mission-section';
+import { FooterSection } from '../components/ui/footer-section';
 
 export default function Home() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -19,7 +25,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-daoBg relative overflow-hidden">
+    <div className="bg-daoBg relative">
       {/* Floating particles background for the entire page */}
       {isClient && (
         <div className="fixed inset-0 pointer-events-none z-0">
@@ -64,22 +70,38 @@ export default function Home() {
       />
 
       {/* Hero Section - Full screen 3D component */}
-      <HeroFuturistic />
+      <div className="relative z-20">
+        <HeroFuturistic />
+      </div>
 
-      {/* Scroll to explore button - positioned below the 3D hero */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-50">
-        <button
-          className="explore-btn flex flex-col items-center space-y-2 text-white/80 hover:text-white transition-colors duration-300 group"
-          style={{ animationDelay: '2.2s' }}
-        >
-          <span className="text-sm font-medium tracking-wider uppercase">Scroll to explore</span>
-          <div className="explore-arrow transform group-hover:translate-y-1 transition-transform duration-300">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" className="arrow-svg">
-              <path d="M11 5V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-              <path d="M6 12L11 17L16 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-            </svg>
-          </div>
-        </button>
+      {/* Upcoming Events Section */}
+      <div className="relative z-30 mt-48">
+        <EventsSection />
+      </div>
+
+      {/* Past Events Section */}
+      <div className="relative z-30">
+        <PastEventsSection />
+      </div>
+
+      {/* Sponsors Section */}
+      <div className="relative z-30">
+        <SponsorsSection />
+      </div>
+
+      {/* Student Benefits Section */}
+      <div className="relative z-30">
+        <StudentBenefitsSection />
+      </div>
+
+      {/* Vision and Mission Section */}
+      <div className="relative z-30">
+        <VisionMissionSection />
+      </div>
+
+      {/* Footer Section */}
+      <div className="relative z-30">
+        <FooterSection />
       </div>
     </div>
   );

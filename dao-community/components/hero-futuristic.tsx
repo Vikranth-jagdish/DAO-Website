@@ -237,6 +237,22 @@ export const Html = () => {
         <PostProcessing fullScreenEffect={true} />
         <Scene />
       </Canvas>
+
+      {/* Scroll to explore button */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-50">
+        <button
+          className="explore-btn flex flex-col items-center space-y-2 text-white/80 hover:text-white transition-colors duration-300 group"
+          style={{ animationDelay: '2.2s' }}
+        >
+          <span className="text-sm font-medium tracking-wider uppercase">Scroll to explore</span>
+          <div className="explore-arrow transform group-hover:translate-y-1 transition-transform duration-300">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" className="arrow-svg">
+              <path d="M11 5V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+              <path d="M6 12L11 17L16 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+            </svg>
+          </div>
+        </button>
+      </div>
     </div>
   );
 };
