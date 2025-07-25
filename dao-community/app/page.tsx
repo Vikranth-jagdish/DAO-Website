@@ -36,7 +36,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="bg-daoBg relative">
+    <div className="bg-daoBg relative min-h-screen" style={{ margin: 0, padding: 0, border: 'none', outline: 'none' }}>
       {/* Anime Navbar */}
       <AnimeNavBar items={navItems} defaultActive="Home" />
       

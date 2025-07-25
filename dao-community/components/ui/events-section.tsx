@@ -173,8 +173,6 @@ function TimelineCard({ event, index }: { event: typeof events[0], index: number
 export function EventsSection() {
   return (
     <section className="relative bg-gradient-to-b from-daoBg via-daoSurface/10 to-daoBg min-h-screen py-32 px-8 md:px-16 lg:px-24 overflow-x-auto">
-      {/* Section Divider */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accentCyan/50 to-transparent"></div>
       
       {/* Background Grid */}
       <div className="absolute inset-0 opacity-10">
