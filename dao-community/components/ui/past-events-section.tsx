@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Carousel } from './carousel';
+import { BeamsBackground } from './beams-background';
 
 const pastEventsSlides = [
   {
@@ -51,12 +52,12 @@ function StatsCard({ stat, index }: { stat: typeof pastEventsStats[0], index: nu
       viewport={{ once: true }}
       className="group relative"
     >
-      <div className="glass-card p-8 rounded-xl border border-accentPurple/20 hover:border-accentPurple/40 transition-all duration-300 backdrop-blur-md bg-daoSurface/30 h-full text-center">
-        <div className="space-y-4">
-          <div className="text-4xl md:text-5xl font-orbitron font-bold text-accentPurple">
+      <div className="glass-card rounded-xl border-2 border-accentPurple/30 hover:border-accentPurple/60 transition-all duration-300 backdrop-blur-md bg-daoSurface/40 h-full text-center shadow-lg shadow-accentPurple/20" style={{ padding: '1rem' }}>
+        <div style={{ marginTop: '0.5rem', marginBottom: '0.5rem' }}>
+          <div className="text-3xl md:text-4xl lg:text-5xl font-orbitron font-bold text-accentPurple" style={{ marginBottom: '0.75rem', padding: '0.25rem' }}>
             {stat.value}
           </div>
-          <div className="text-lg font-sharetech text-textSecondary uppercase tracking-wider">
+          <div className="text-base md:text-lg font-sharetech text-textSecondary uppercase tracking-wider" style={{ padding: '0.25rem' }}>
             {stat.label}
           </div>
         </div>
@@ -67,20 +68,17 @@ function StatsCard({ stat, index }: { stat: typeof pastEventsStats[0], index: nu
 
 export function PastEventsSection() {
   return (
-    <section className="relative bg-gradient-to-b from-daoBg via-daoSurface/10 to-daoBg min-h-screen py-32 px-8 md:px-16 lg:px-24" style={{ marginTop: '200px' }}>
-      {/* Section Divider */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accentPurple/50 to-transparent"></div>
-      
-      {/* Background Grid */}
-      <div className="absolute inset-0 opacity-8">
-        <div className="grid-pattern"></div>
-      </div>
-      
-      {/* Side decorations */}
-      <div className="absolute left-0 top-1/2 w-1 h-64 bg-gradient-to-b from-transparent via-accentPurple to-transparent transform -translate-y-1/2"></div>
-      <div className="absolute right-0 top-1/2 w-1 h-64 bg-gradient-to-b from-transparent via-accentPurple to-transparent transform -translate-y-1/2"></div>
-      
-      <div className="max-w-8xl mx-auto relative z-10">
+    <section className="relative min-h-screen" style={{ marginTop: '200px' }}>
+      <BeamsBackground intensity="medium" className="min-h-screen">
+        <div className="relative py-32 px-8 md:px-16 lg:px-24">
+          {/* Section Divider */}
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accentPurple/50 to-transparent"></div>
+          
+          {/* Side decorations */}
+          <div className="absolute left-0 top-1/2 w-1 h-64 bg-gradient-to-b from-transparent via-accentPurple to-transparent transform -translate-y-1/2"></div>
+          <div className="absolute right-0 top-1/2 w-1 h-64 bg-gradient-to-b from-transparent via-accentPurple to-transparent transform -translate-y-1/2"></div>
+          
+          <div className="max-w-8xl mx-auto relative z-20">
         {/* Section Header */}
         <div className="text-center mb-24">
           <motion.h2 
@@ -126,7 +124,9 @@ export function PastEventsSection() {
             <StatsCard key={stat.label} stat={stat} index={index} />
           ))}
         </div>
-      </div>
+          </div>
+        </div>
+      </BeamsBackground>
     </section>
   );
 } 
