@@ -1,35 +1,44 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { Carousel } from './carousel';
 
-const pastEvents = [
+const pastEventsSlides = [
   {
-    id: 1,
-    name: 'Blockchain Fundamentals',
-    description: 'Introduction to blockchain technology and cryptocurrency basics',
-    date: 'December 2024',
-    attendees: '150+',
-    status: 'Completed'
+    title: "Blockchain Fundamentals Workshop",
+    button: "View Highlights",
+    src: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=600&fit=crop&crop=center"
   },
   {
-    id: 2,
-    name: 'Smart Contract Workshop',
-    description: 'Hands-on workshop for building and deploying smart contracts',
-    date: 'November 2024',
-    attendees: '85+',
-    status: 'Completed'
+    title: "Smart Contract Bootcamp", 
+    button: "View Highlights",
+    src: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=600&fit=crop&crop=center"
   },
   {
-    id: 3,
-    name: 'DeFi Deep Dive',
-    description: 'Exploring decentralized finance protocols and yield farming',
-    date: 'October 2024',
-    attendees: '120+',
-    status: 'Completed'
+    title: "DeFi Deep Dive Summit",
+    button: "View Highlights", 
+    src: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=800&h=600&fit=crop&crop=center"
+  },
+  {
+    title: "NFT Creator Workshop",
+    button: "View Highlights",
+    src: "https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?w=800&h=600&fit=crop&crop=center"
+  },
+  {
+    title: "Web3 Gaming Conference",
+    button: "View Highlights",
+    src: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&h=600&fit=crop&crop=center"
   }
 ];
 
-function PastEventCard({ event, index }: { event: typeof pastEvents[0], index: number }) {
+const pastEventsStats = [
+  { label: "Events Hosted", value: "25+" },
+  { label: "Total Attendees", value: "2,500+" },
+  { label: "Hours of Content", value: "150+" },
+  { label: "Industry Speakers", value: "50+" }
+];
+
+function StatsCard({ stat, index }: { stat: typeof pastEventsStats[0], index: number }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -42,25 +51,14 @@ function PastEventCard({ event, index }: { event: typeof pastEvents[0], index: n
       viewport={{ once: true }}
       className="group relative"
     >
-      <div className="glass-card p-6 rounded-xl border border-accentPurple/20 hover:border-accentPurple/40 transition-all duration-300 backdrop-blur-md bg-daoSurface/30 h-full">
-        <div className="flex items-center justify-between mb-4">
-          <span className="text-xs font-sharetech text-accentPurple uppercase tracking-wider px-3 py-1 rounded-full bg-accentPurple/10 border border-accentPurple/20">
-            {event.status}
-          </span>
-          <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-        </div>
-        
-        <h3 className="font-orbitron text-xl font-bold text-textPrimary group-hover:text-accentPurple transition-colors duration-300 mb-3">
-          {event.name}
-        </h3>
-        
-        <p className="text-sm text-textSecondary leading-relaxed mb-4">
-          {event.description}
-        </p>
-        
-        <div className="flex items-center justify-between text-sm">
-          <span className="text-textSecondary">{event.date}</span>
-          <span className="text-accentCyan font-medium">{event.attendees} attendees</span>
+      <div className="glass-card p-8 rounded-xl border border-accentPurple/20 hover:border-accentPurple/40 transition-all duration-300 backdrop-blur-md bg-daoSurface/30 h-full text-center">
+        <div className="space-y-4">
+          <div className="text-4xl md:text-5xl font-orbitron font-bold text-accentPurple">
+            {stat.value}
+          </div>
+          <div className="text-lg font-sharetech text-textSecondary uppercase tracking-wider">
+            {stat.label}
+          </div>
         </div>
       </div>
     </motion.div>
@@ -97,7 +95,7 @@ export function PastEventsSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-textSecondary max-w-4xl mx-auto text-xl md:text-2xl leading-relaxed mb-8"
+            className="text-textSecondary text-xl md:text-2xl leading-relaxed mb-8 text-center w-full"
           >
             Celebrating our successful journey in blockchain education and community building
           </motion.p>
@@ -109,35 +107,25 @@ export function PastEventsSection() {
           ></motion.div>
         </div>
 
-        {/* Events Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {pastEvents.map((event, index) => (
-            <PastEventCard key={event.id} event={event} index={index} />
-          ))}
-        </div>
-
-        {/* Stats */}
+        {/* Carousel Section */}
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center"
+          transition={{ duration: 0.8, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="mb-24"
         >
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="glass-card p-6 rounded-xl border border-accentCyan/20 backdrop-blur-md bg-daoSurface/20">
-              <h3 className="font-orbitron text-3xl font-bold text-accentCyan mb-2">355+</h3>
-              <p className="text-textSecondary">Total Attendees</p>
-            </div>
-            <div className="glass-card p-6 rounded-xl border border-accentPurple/20 backdrop-blur-md bg-daoSurface/20">
-              <h3 className="font-orbitron text-3xl font-bold text-accentPurple mb-2">12</h3>
-              <p className="text-textSecondary">Events Completed</p>
-            </div>
-            <div className="glass-card p-6 rounded-xl border border-accentMagenta/20 backdrop-blur-md bg-daoSurface/20">
-              <h3 className="font-orbitron text-3xl font-bold text-accentMagenta mb-2">98%</h3>
-              <p className="text-textSecondary">Satisfaction Rate</p>
-            </div>
+          <div className="flex justify-center items-center min-h-[80vh]">
+            <Carousel slides={pastEventsSlides} />
           </div>
         </motion.div>
+
+        {/* Stats Section */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {pastEventsStats.map((stat, index) => (
+            <StatsCard key={stat.label} stat={stat} index={index} />
+          ))}
+        </div>
       </div>
     </section>
   );

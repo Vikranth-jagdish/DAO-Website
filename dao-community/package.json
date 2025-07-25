@@ -11,6 +11,7 @@
   "dependencies": {
     "@react-three/drei": "^10.5.0",
     "@react-three/fiber": "^9.2.0",
+    "@tabler/icons-react": "^3.34.1",
     "@types/three": "^0.178.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
