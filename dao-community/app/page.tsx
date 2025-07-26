@@ -1,10 +1,7 @@
 import React from "react";
 
 const HomePage = () => {
-
-
-  
-  return <div>Hello</div>;
+  return <div className="h-[200vh]  ">Hello</div>;
 };
 
 export default HomePage;
