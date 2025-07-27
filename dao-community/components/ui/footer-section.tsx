@@ -35,7 +35,7 @@ export function FooterSection() {
       {/* Top Divider */}
       <div className="absolute top-0 left-0 right-0 h-px bg-muted-foreground/30"></div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative ">
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand + Social */}
