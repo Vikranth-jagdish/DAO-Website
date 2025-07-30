@@ -10,7 +10,7 @@ import {
   MobileNavToggle,
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
-import Link from "next/link";
+
 import { useState } from "react";
 
 export function NavbarDemo() {
@@ -25,7 +25,7 @@ export function NavbarDemo() {
     },
     {
       name: "Benifits",
-      link: "/upcomming-events",
+      link: "/student-benefits",
     },
 
     {
@@ -44,7 +44,9 @@ export function NavbarDemo() {
           <NavbarLogo />
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
-            <NavbarButton href="/gallery" variant="primary">Gallery</NavbarButton>
+            <NavbarButton href="/gallery" variant="primary">
+              Gallery
+            </NavbarButton>
           </div>
         </NavBody>
 
@@ -73,15 +75,15 @@ export function NavbarDemo() {
               </a>
             ))}
             <div className="flex w-full flex-col gap-4">
-              <Link href="/gallery">
-                <NavbarButton
+            
+                <NavbarButton hrefLang="/gallery"
                   onClick={() => setIsMobileMenuOpen(false)}
                   variant="primary"
                   className="w-full"
                 >
                   Gallery
                 </NavbarButton>
-              </Link>
+             
             </div>
           </MobileNavMenu>
         </MobileNav>

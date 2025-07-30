@@ -46,10 +46,11 @@ export default function RootLayout({
       <body
         className={`${orbitron.variable} ${sharetech.variable} ${michroma.variable} antialiased`}
       >
-        <div className="sticky w-full top-0 left-0 mt-3">
+        <div className="sticky w-full top-0 left-0 mt-3 z-[100]">
           <NavbarDemo />
         </div>
         {children}
+
         <FooterSection />
       </body>
     </html>

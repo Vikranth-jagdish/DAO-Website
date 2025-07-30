@@ -1,9 +1,10 @@
 import React from "react";
+import InfiniteGallery from "./InfiniteGallery";
 
 const Gallery = () => {
   return (
     <div>
-      <h1>Gallery</h1>
+      <InfiniteGallery />
     </div>
   );
 };
