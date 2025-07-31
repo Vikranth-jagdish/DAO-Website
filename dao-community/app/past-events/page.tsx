@@ -164,16 +164,16 @@ export default function PastEventsPage() {
     },
   };
 
-  const cardHover = {
-    hover: {
-      y: -8,
-      scale: 1.03,
-      transition: {
-        duration: 0.3,
-        ease: "easeOut",
-      },
-    },
-  };
+  // const cardHover = {
+  //   hover: {
+  //     y: -8,
+  //     scale: 1.03,
+  //     transition: {
+  //       duration: 0.3,
+  //       ease: "easeOut",
+  //     },
+  //   },
+  // };
 
   const dialogOverlay = {
     hidden: { opacity: 0 },
@@ -231,7 +231,7 @@ export default function PastEventsPage() {
             <motion.div
               key={event.id}
               variants={cardItem}
-              whileHover="hover"
+              whileHover={{ scale: 1.05}} // Apply the hover variant here
               className="cursor-pointer"
               onClick={() => handleCardClick(event)}
             >
@@ -280,7 +280,7 @@ export default function PastEventsPage() {
                 animate="visible"
                 exit="exit"
                 className="relative z-50 bg-card rounded-2xl shadow-2xl w-full max-w-6xl mx-auto overflow-hidden
-                           flex flex-col lg:flex-row h-full max-h-[90vh]" // Adjusted max-h for more vertical space if needed
+                         flex flex-col lg:flex-row h-full max-h-[90vh]" // Adjusted max-h for more vertical space if needed
               >
                 {selectedEvent && (
                   <>
