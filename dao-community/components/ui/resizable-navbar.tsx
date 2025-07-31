@@ -19,7 +19,7 @@ interface NavbarProps {
 interface NavBodyProps {
   children: React.ReactNode;
   className?: string;
-  visible?: boolean;
+  visible?: boolean; // Keep for potential future use or if other children depend on it
 }
 
 interface NavItemsProps {
@@ -34,7 +34,7 @@ interface NavItemsProps {
 interface MobileNavProps {
   children: React.ReactNode;
   className?: string;
-  visible?: boolean;
+  visible?: boolean; // Keep for potential future use or if other children depend on it
 }
 
 interface MobileNavHeaderProps {
@@ -55,6 +55,9 @@ export const Navbar = ({ children, className }: NavbarProps) => {
     target: ref,
     offset: ["start start", "end start"],
   });
+  // The 'visible' state here primarily controls the 'y' transform
+  // and potentially other animations based on scroll.
+  // We'll adjust its impact on background/shadow in NavBody/MobileNav.
   const [visible, setVisible] = useState<boolean>(false);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -81,13 +84,13 @@ export const Navbar = ({ children, className }: NavbarProps) => {
 export const NavBody = ({ children, className, visible }: NavBodyProps) => {
   return (
     <motion.div
+      // Always apply the desired "scrolled" styles
       animate={{
-        backdropFilter: visible ? "blur(10px)" : "none",
-        boxShadow: visible
-          ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
-          : "none",
-        width: visible ? "40%" : "100%",
-        y: visible ? 20 : 0,
+        backdropFilter: "blur(10px)", // Always blurred
+        boxShadow:
+          "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset", // Always has shadow
+        width: visible ? "40%" : "100%", // Still animates width based on scroll
+        y: visible ? 20 : 0, // Still animates Y based on scroll
       }}
       transition={{
         type: "spring",
@@ -96,7 +99,8 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
       }}
       style={{ minWidth: "800px" }}
       className={cn(
-        "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full px-4 py-2 lg:flex bg-transparent backdrop-blur-md",
+        // Ensure initial background is applied, and backdrop-blur is always there
+        "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full px-4 py-2 lg:flex bg-background/80 backdrop-blur-md", // Added bg-background/80
         className
       )}
     >
@@ -140,16 +144,16 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
 export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
   return (
     <motion.div
+      // Always apply the desired "scrolled" styles for background/blur
       animate={{
-        backdropFilter: visible ? "blur(10px)" : "none",
-        boxShadow: visible
-          ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
-          : "none",
-        width: visible ? "90%" : "100%",
-        paddingRight: visible ? "12px" : "0px",
-        paddingLeft: visible ? "12px" : "0px",
-        borderRadius: visible ? "4px" : "2rem",
-        y: visible ? 20 : 0,
+        backdropFilter: "blur(10px)", // Always blurred
+        boxShadow:
+          "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset", // Always has shadow
+        width: visible ? "90%" : "100%", // Still animates width based on scroll
+        paddingRight: visible ? "12px" : "0px", // Still animates padding based on scroll
+        paddingLeft: visible ? "12px" : "0px", // Still animates padding based on scroll
+        borderRadius: visible ? "4px" : "2rem", // Still animates border-radius based on scroll
+        y: visible ? 20 : 0, // Still animates Y based on scroll
       }}
       transition={{
         type: "spring",
@@ -157,7 +161,8 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
         damping: 50,
       }}
       className={cn(
-        "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between px-0 py-2 lg:hidden bg-transparent backdrop-blur-md",
+        // Ensure initial background is applied, and backdrop-blur is always there
+        "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between px-0 py-2 lg:hidden bg-background/80 backdrop-blur-md", // Added bg-background/80
         className
       )}
     >

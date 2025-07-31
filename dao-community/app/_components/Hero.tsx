@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link"; // Assuming you might want the button to link somewhere
 
 export default function HeroSection() {
   // Animation variants
@@ -18,25 +19,27 @@ export default function HeroSection() {
 
   const item = {
     hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
   };
 
   return (
-    <section className="relative h-screen w-full overflow-hidden">
+    <section className="relative h-screen w-full overflow-hidden flex items-center justify-center">
       {/* Background video */}
       <video
         autoPlay
         muted
         loop
         playsInline
-        className="absolute inset-0 h-full w-full object-cover blur-sm"
+        // Removed blur-sm from here
+        className="absolute inset-0 h-full w-full object-cover"
       >
         <source src="/bg-video.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-transparent" />
+      {/* Dark overlay (acting as the "shadow" for readability) */}
+      {/* Changed bg-transparent to bg-black/60 for a semi-transparent dark overlay */}
+      <div className="absolute inset-0 bg-black/60" />
 
       {/* Content container */}
       <div className="relative z-10 flex h-full w-full items-center justify-center">
@@ -48,26 +51,35 @@ export default function HeroSection() {
         >
           <motion.h1
             variants={item}
-            className="mb-6 text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl"
+            className="mb-6 text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl"
           >
-            Welcome to <span className="text-primary">DAO Community</span>
+            Shape the Future of{" "}
+            <span className="text-primary">
+              Decentralized Autonomous Organizations
+            </span>
           </motion.h1>
 
           <motion.p
             variants={item}
-            className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground sm:text-xl"
+            className="mx-auto mb-10 max-w-3xl text-lg text-gray-300 sm:text-xl lg:text-2xl"
           >
-            A decentralized future built together.
+            Dive into a vibrant community where collective intelligence drives
+            innovation. Connect, collaborate, and contribute to groundbreaking
+            projects that redefine the digital landscape.
           </motion.p>
 
           <motion.div variants={item}>
-            <Button
-              size="lg"
-              className="group bg-primary px-8 py-6 text-lg font-semibold hover:bg-primary/90"
-            >
-              Join the Community
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Button>
+            <Link href="/join" passHref>
+              {" "}
+              {/* Added Link for navigation */}
+              <Button
+                size="lg"
+                className="group bg-primary px-10 py-7 text-xl font-bold hover:bg-primary/90 transition-colors duration-300 shadow-lg hover:shadow-xl"
+              >
+                Explore & Join Us
+                <ArrowRight className="ml-3 h-5 w-5 transition-transform group-hover:translate-x-2" />
+              </Button>
+            </Link>
           </motion.div>
         </motion.div>
       </div>
