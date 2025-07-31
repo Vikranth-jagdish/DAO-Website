@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ExternalLink, Mail } from "lucide-react";
+import Image from "next/image";
 
 interface Sponsor {
   id: number;
@@ -18,10 +19,10 @@ const sponsors: Sponsor[] = [
   {
     id: 1,
     name: "OpenAI",
-    image: "/sponsors/openai.png",
+    image: "/Sponsors/RELIANCE-LOGO.png",
     shortDescription: "Pioneering AI research and deployment",
     fullDescription:
-      "OpenAI is an AI research and deployment company dedicated to ensuring artificial general intelligence benefits all of humanity. We're building safe and beneficial AGI while ensuring its benefits are widely distributed.",
+      "OpenAI is an AI research and deployment company dedicated to ensuring artificial general intelligence benefits all of humanity. We're building safe and beneficial AGI while ensuring its benefits be widely distributed.",
     category: "AI & Research",
     website: "https://openai.com",
     contact: "partnerships@openai.com",
@@ -84,7 +85,7 @@ const sponsors: Sponsor[] = [
   {
     id: 7,
     name: "NVIDIA",
-    image: "/Sponsors/RELIANCE-LOGO.png",
+    image: "/sponsors/nvidia.png",
     shortDescription: "Powering the AI revolution",
     fullDescription:
       "NVIDIA is the pioneer of GPU computing, powering modern AI, data science, and creative workflows. Our platforms are reshaping industries from gaming to healthcare to autonomous vehicles.",
@@ -105,294 +106,259 @@ const sponsors: Sponsor[] = [
   },
 ];
 
-const categoryColors: Record<string, string> = {
-  "AI & Research": "bg-[oklch(0.488_0.243_264.376)]",
-  Technology: "bg-[oklch(0.696_0.17_162.48)]",
-  "Cloud Computing": "bg-[oklch(0.769_0.188_70.08)]",
-  Blockchain: "bg-[oklch(0.627_0.265_303.9)]",
-  Hardware: "bg-[oklch(0.645_0.246_16.439)]",
-  Fintech: "bg-[oklch(0.541_0.281_293.009)]",
-};
-
 const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, scale: 0.9, y: 20 },
   visible: (i: number) => ({
     opacity: 1,
+    scale: 1,
     y: 0,
     transition: {
-      duration: 0.5,
+      duration: 0.6,
       ease: "easeOut",
       delay: i * 0.1,
     },
   }),
   hover: {
-    y: -8,
+    scale: 1.05,
+    boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.2)",
     transition: { duration: 0.3, ease: "easeOut" },
   },
 };
 
-const modalVariants = {
-  hidden: { opacity: 0, y: 50 },
+const modalContentVariants = {
+  hidden: { opacity: 0, scale: 0.95 },
   visible: {
     opacity: 1,
-    y: 0,
-    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
+    scale: 1,
+    transition: { duration: 0.3, ease: "easeOut" },
   },
   exit: {
     opacity: 0,
-    y: 50,
-    transition: { duration: 0.3, ease: "easeIn" },
+    scale: 0.95,
+    transition: { duration: 0.2, ease: "easeIn" },
   },
 };
 
 const overlayVariants = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1 },
-  exit: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.2 } },
+  exit: { opacity: 0, transition: { duration: 0.3 } },
 };
 
 const SponsorsPage: React.FC = () => {
   const [selectedSponsor, setSelectedSponsor] = useState<Sponsor | null>(null);
-  const [activeCategory, setActiveCategory] = useState<string>("All");
 
-  const categories = [
-    "All",
-    ...Array.from(new Set(sponsors.map((s) => s.category))),
-  ];
+  const handleCardClick = (sponsor: Sponsor) => {
+    setSelectedSponsor(sponsor);
+  };
 
-  const filteredSponsors =
-    activeCategory === "All"
-      ? sponsors
-      : sponsors.filter((sponsor) => sponsor.category === activeCategory);
+  const handleCloseModal = () => {
+    setSelectedSponsor(null);
+  };
 
   return (
-    <div className="min-h-screen bg-[oklch(0.141_0.005_285.823)]">
+    <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
       <div className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center">
           <motion.h1
-            className="text-4xl md:text-6xl font-bold text-[oklch(0.985_0_0)] mb-6"
+            className="text-4xl md:text-6xl font-extrabold text-foreground mb-6 leading-tight"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            Our{" "}
-            <span className="text-[oklch(0.541_0.281_293.009)]">Sponsors</span>
+            Our <span className="text-primary">Sponsors</span>
           </motion.h1>
           <motion.p
-            className="text-xl text-[oklch(0.705_0.015_286.067)] max-w-3xl mx-auto"
+            className="text-xl text-muted-foreground max-w-3xl mx-auto"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Visionary partners powering the future of decentralized technology
+            Visionary organizations powering our mission and community.
           </motion.p>
         </div>
       </div>
 
-      {/* Category Filter */}
-      <div className="px-4 sm:px-6 lg:px-8 mb-12">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-wrap justify-center gap-3">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setActiveCategory(category)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                  activeCategory === category
-                    ? "bg-[oklch(0.541_0.281_293.009)] text-[oklch(0.969_0.016_293.756)] shadow-md"
-                    : "bg-[oklch(0.21_0.006_285.885)] text-[oklch(0.985_0_0)] hover:bg-[oklch(0.274_0.006_286.033)]"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Dynamic Sponsors Grid */}
+      {/* Sponsors Grid */}
       <div className="px-4 sm:px-6 lg:px-8 pb-24">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredSponsors.map((sponsor, index) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            {sponsors.map((sponsor, index) => (
               <motion.div
                 key={sponsor.id}
-                className="group relative h-64 rounded-2xl overflow-hidden shadow-lg cursor-pointer"
+                className="group relative h-80 rounded-3xl overflow-hidden shadow-lg cursor-pointer
+                           flex items-end justify-start p-6 transform-gpu border border-border/50"
                 variants={cardVariants}
                 initial="hidden"
                 animate="visible"
-                custom={index % 3}
+                custom={index % 4}
                 whileHover="hover"
-                onClick={() => setSelectedSponsor(sponsor)}
+                onClick={() => handleCardClick(sponsor)}
               >
-                {/* Background Gradient */}
-                <div
-                  className={`absolute inset-0 ${
-                    categoryColors[sponsor.category]
-                  } opacity-90 group-hover:opacity-100 transition-opacity`}
-                />
-
-                {/* Sponsor Content */}
-                <div className="relative h-full flex flex-col justify-between p-6 text-[oklch(0.985_0_0)]">
-                  <div>
-                    <div className="w-16 h-16 mb-4 bg-[oklch(1_0_0/20%)] rounded-xl flex items-center justify-center backdrop-blur-sm">
-                      <span className="text-2xl font-bold">
-                        {sponsor.name.charAt(0)}
-                      </span>
-                    </div>
-                    <h3 className="text-2xl font-bold mb-2">{sponsor.name}</h3>
-                    <p className="text-sm opacity-90">
-                      {sponsor.shortDescription}
-                    </p>
-                  </div>
-
-                  {/* Category Badge */}
-                  <div className="mt-4">
-                    <span className="inline-block px-3 py-1 text-xs font-semibold bg-[oklch(1_0_0/20%)] rounded-full backdrop-blur-sm">
-                      {sponsor.category}
-                    </span>
-                  </div>
+                {/* Background Image with Blur and Overlay */}
+                <div className="absolute inset-0 z-0">
+                  <Image
+                    src={sponsor.image}
+                    alt={`${sponsor.name} logo`}
+                    fill
+                    className="object-cover scale-110  group-hover:scale-105 transition-all duration-500 ease-out"
+                    quality={75}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                  />
+                  {/* Subtle dark gradient overlay for text readability */}
+                  <div
+                    className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/60 to-transparent
+                                 group-hover:from-background/95 group-hover:via-background/70 transition-opacity duration-300"
+                  />
                 </div>
 
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-[oklch(0_0_0)] bg-opacity-0 group-hover:bg-opacity-20 transition-all" />
+                {/* Sponsor Content (name and short description at bottom) */}
+                <div className="relative z-10 flex flex-col items-start w-full">
+                  <h3 className="text-3xl font-extrabold text-foreground leading-tight">
+                    {sponsor.name}
+                  </h3>
+                  <p className="text-sm text-muted-foreground opacity-90 transition-opacity duration-300 mt-1">
+                    {sponsor.shortDescription}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Sponsor Modal */}
+      {/* Custom Sponsor Modal */}
       <AnimatePresence>
         {selectedSponsor && (
-          <>
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            {/* Modal Overlay */}
             <motion.div
-              className="fixed inset-0 bg-[oklch(0_0_0)] bg-opacity-50 z-40 backdrop-blur-sm"
+              className="fixed inset-0 bg-background/80 backdrop-blur-sm"
               variants={overlayVariants}
               initial="hidden"
               animate="visible"
               exit="exit"
-              onClick={() => setSelectedSponsor(null)}
+              onClick={handleCloseModal} // Click overlay to close
             />
 
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-              <motion.div
-                className="bg-[oklch(0.21_0.006_285.885)] rounded-3xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative"
-                variants={modalVariants}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
+            {/* Modal Content */}
+            <motion.div
+              className="relative bg-card text-foreground rounded-2xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden border border-border"
+              variants={modalContentVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+            >
+              {/* Close Button */}
+              <button
+                onClick={handleCloseModal}
+                className="absolute top-4 right-4 z-10 p-2 rounded-full text-muted-foreground hover:text-foreground transition-colors"
+                aria-label="Close"
               >
-                {/* Close Button */}
-                <button
-                  onClick={() => setSelectedSponsor(null)}
-                  className="absolute top-6 right-6 z-10 p-2 rounded-full bg-[oklch(0.274_0.006_286.033)] hover:bg-[oklch(0.541_0.281_293.009)] transition-colors"
-                >
-                  <X className="w-5 h-5 text-[oklch(0.985_0_0)]" />
-                </button>
+                <X className="w-6 h-6" />
+              </button>
 
-                {/* Modal Content */}
-                <div className="p-8 pt-16">
-                  {/* Header with Gradient */}
-                  <div
-                    className={`${
-                      categoryColors[selectedSponsor.category]
-                    } rounded-2xl p-8 mb-8 relative overflow-hidden`}
-                  >
-                    <div className="absolute inset-0 bg-[oklch(1_0_0/10%)] backdrop-blur-sm" />
-                    <div className="relative z-10 flex flex-col md:flex-row items-center gap-8">
-                      <div className="w-24 h-24 bg-[oklch(0.985_0_0)] rounded-xl flex items-center justify-center shadow-lg">
-                        <span className="text-4xl font-bold text-[oklch(0.141_0.005_285.823)]">
-                          {selectedSponsor.name.charAt(0)}
-                        </span>
-                      </div>
-                      <div>
-                        <h2 className="text-3xl font-bold text-[oklch(0.985_0_0)] mb-2">
-                          {selectedSponsor.name}
-                        </h2>
-                        <p className="text-[oklch(0.985_0_0/90%)]">
-                          {selectedSponsor.shortDescription}
-                        </p>
-                      </div>
+              <div className="flex flex-col lg:flex-row h-full">
+                {/* Left Section: Image and Basic Info */}
+                <div className="lg:w-2/5 p-8 flex flex-col items-center justify-center bg-muted/20 border-r border-border/50">
+                  {selectedSponsor.image ? (
+                    <div className="relative w-48 h-48 mb-6 rounded-full overflow-hidden bg-background flex items-center justify-center shadow-lg border-4 border-primary/50">
+                      <Image
+                        src={selectedSponsor.image}
+                        alt={`${selectedSponsor.name} logo`}
+                        width={120}
+                        height={120}
+                        className="object-contain"
+                      />
                     </div>
+                  ) : (
+                    <div className="w-48 h-48 mb-6 rounded-full bg-background flex items-center justify-center shadow-lg border-4 border-primary/50">
+                      <span className="text-6xl font-bold text-primary">
+                        {selectedSponsor.name.charAt(0)}
+                      </span>
+                    </div>
+                  )}
+                  <h2 className="text-3xl font-bold text-foreground text-center mb-2">
+                    {selectedSponsor.name}
+                  </h2>
+                  <p className="text-md text-muted-foreground text-center">
+                    {selectedSponsor.category}
+                  </p>
+                </div>
+
+                {/* Right Section: Full Description and Actions */}
+                <div className="lg:w-3/5 p-8 flex flex-col">
+                  <div className="mb-6 space-y-2">
+                    <h3 className="text-2xl font-bold text-foreground">
+                      About {selectedSponsor.name}
+                    </h3>
+                    <p className="text-muted-foreground">
+                      {selectedSponsor.shortDescription}
+                    </p>
                   </div>
 
-                  {/* Sponsor Details */}
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div className="md:col-span-2">
-                      <h3 className="text-xl font-semibold text-[oklch(0.985_0_0)] mb-4">
-                        About {selectedSponsor.name}
-                      </h3>
-                      <p className="text-[oklch(0.705_0.015_286.067)] leading-relaxed">
-                        {selectedSponsor.fullDescription}
-                      </p>
+                  <div className="flex-1 overflow-y-auto pr-4 custom-scrollbar">
+                    <p className="text-foreground leading-relaxed text-base">
+                      {selectedSponsor.fullDescription}
+                    </p>
+                  </div>
+
+                  <div className="mt-8 pt-6 border-t border-border space-y-4">
+                    {/* Website */}
+                    <div className="flex items-center text-foreground">
+                      <ExternalLink className="w-5 h-5 mr-3 text-muted-foreground" />
+                      <span className="font-semibold text-sm mr-2">
+                        Website:
+                      </span>
+                      <a
+                        href={selectedSponsor.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary hover:underline"
+                      >
+                        {new URL(selectedSponsor.website).hostname}
+                      </a>
                     </div>
 
-                    <div className="space-y-6">
-                      {/* Category */}
-                      <div>
-                        <h4 className="text-sm font-medium text-[oklch(0.705_0.015_286.067)] mb-1">
-                          Category
-                        </h4>
-                        <p className="text-[oklch(0.985_0_0)] font-medium">
-                          {selectedSponsor.category}
-                        </p>
-                      </div>
+                    {/* Contact */}
+                    <div className="flex items-center text-foreground">
+                      <Mail className="w-5 h-5 mr-3 text-muted-foreground" />
+                      <span className="font-semibold text-sm mr-2">
+                        Contact:
+                      </span>
+                      <a
+                        href={`mailto:${selectedSponsor.contact}`}
+                        className="text-primary hover:underline"
+                      >
+                        {selectedSponsor.contact}
+                      </a>
+                    </div>
 
-                      {/* Website */}
-                      <div>
-                        <h4 className="text-sm font-medium text-[oklch(0.705_0.015_286.067)] mb-1">
-                          Website
-                        </h4>
-                        <a
-                          href={selectedSponsor.website}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center text-[oklch(0.541_0.281_293.009)] hover:text-[oklch(0.488_0.243_264.376)] font-medium"
-                        >
-                          {new URL(selectedSponsor.website).hostname}
-                          <ExternalLink className="w-4 h-4 ml-1.5" />
-                        </a>
-                      </div>
-
-                      {/* Contact */}
-                      <div>
-                        <h4 className="text-sm font-medium text-[oklch(0.705_0.015_286.067)] mb-1">
-                          Contact
-                        </h4>
-                        <a
-                          href={`mailto:${selectedSponsor.contact}`}
-                          className="inline-flex items-center text-[oklch(0.985_0_0)] hover:text-[oklch(0.541_0.281_293.009)] font-medium"
-                        >
-                          {selectedSponsor.contact}
-                          <Mail className="w-4 h-4 ml-1.5" />
-                        </a>
-                      </div>
-
-                      {/* CTA Buttons */}
-                      <div className="pt-4 space-y-3">
-                        <a
-                          href={selectedSponsor.website}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="block w-full px-4 py-3 bg-[oklch(0.541_0.281_293.009)] hover:bg-[oklch(0.488_0.243_264.376)] text-[oklch(0.985_0_0)] font-medium rounded-lg text-center transition-colors"
-                        >
-                          Visit Website
-                        </a>
-                        <a
-                          href={`mailto:${selectedSponsor.contact}`}
-                          className="block w-full px-4 py-3 border border-[oklch(0.274_0.006_286.033)] hover:border-[oklch(0.541_0.281_293.009)] text-[oklch(0.985_0_0)] font-medium rounded-lg text-center transition-colors"
-                        >
-                          Contact Sponsor
-                        </a>
-                      </div>
+                    {/* CTA Buttons - Custom buttons, not Shadcn's */}
+                    <div className="flex flex-col sm:flex-row gap-4 mt-6">
+                      <a
+                        href={selectedSponsor.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 py-3 px-4 text-lg text-center font-semibold rounded-md
+                                   bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
+                      >
+                        Visit Website
+                      </a>
+                      <a
+                        href={`mailto:${selectedSponsor.contact}`}
+                        className="flex-1 py-3 px-4 text-lg text-center font-semibold rounded-md
+                                   border border-input bg-background hover:bg-accent hover:text-accent-foreground transition-colors"
+                      >
+                        Contact Sponsor
+                      </a>
                     </div>
                   </div>
                 </div>
-              </motion.div>
-            </div>
-          </>
+              </div>
+            </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </div>
