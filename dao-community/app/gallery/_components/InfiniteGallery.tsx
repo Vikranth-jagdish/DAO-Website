@@ -2,34 +2,66 @@ import InfiniteMenu from "@/blocks/Components/InfiniteMenu/InfiniteMenu";
 
 const items = [
   {
-    image: "https://picsum.photos/300/300?grayscale",
+    image: "/gallery/image1.jpg",
     link: "https://google.com/",
-    title: "Item 1",
-    description: "This is pretty cool, right?",
+    title: "",
+    description: "",
   },
-  {
-    image: "https://picsum.photos/400/400?grayscale",
+    {
+    image: "/gallery/image2.jpg",
     link: "https://google.com/",
-    title: "Item 2",
-    description: "This is pretty cool, right?",
+    title: "",
+    description: "",
   },
-  {
-    image: "image.png",
+    {
+    image: "/gallery/image3.jpg",
     link: "https://google.com/",
-    title: "Item 3",
-    description: "This is pretty cool, right?",
+    title: "",
+    description: "",
   },
-  {
-    image: "https://picsum.photos/600/600?grayscale",
+    {
+    image: "/gallery/image4.jpg",
     link: "https://google.com/",
-    title: "Item 4",
-    description: "This is pretty cool, right?",
+    title: "",
+    description: "",
+  },
+    {
+    image: "/gallery/image5.jpg",
+    link: "https://google.com/",
+    title: "",
+    description: "",
+  },  {
+    image: "/gallery/image6.jpg",
+    link: "https://google.com/",
+    title: "",
+    description: "",
+  },  {
+    image: "/gallery/image7.jpg",
+    link: "https://google.com/",
+    title: "",
+    description: "",
+  },  {
+    image: "/gallery/image8.jpg",
+    link: "https://google.com/",
+    title: "",
+    description: "",
+  },
+   {
+    image: "/gallery/image9.jpg",
+    link: "https://google.com/",
+    title: "",
+    description: "",
+  },  {
+    image: "/gallery/image10.jpg",
+    link: "https://google.com/",
+    title: "",
+    description: "",
   },
 ];
 
 const InfiniteGallery = () => {
   return (
-    <div style={{ height: "95vh", position: "relative" }} className="bg-background" >
+    <div style={{ height: "98vh", position: "relative" }} className="bg-background" >
       <InfiniteMenu items={items} />
     </div>
   );

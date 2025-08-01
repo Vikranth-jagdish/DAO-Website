@@ -162,7 +162,7 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
       }}
       className={cn(
         // Ensure initial background is applied, and backdrop-blur is always there
-        "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between px-0 py-2 lg:hidden bg-background/80 backdrop-blur-md", // Added bg-background/80
+        "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between px-0 py-2 lg:hidden bg-transparent backdrop-blur-md", // Added bg-background/80
         className
       )}
     >

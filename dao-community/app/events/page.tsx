@@ -97,11 +97,16 @@ const EventsSection: React.FC = () => {
             }}
             whileTap={{ scale: 0.98 }}
           >
-            <div className="relative overflow-hidden rounded-2xl shadow-sm border border-muted hover:border-primary/30 transition-all duration-500 h-[600px]">
-              {/* Full Background */}
-              <div className="absolute inset-0 bg-muted/10">
+            <div className="relative overflow-hidden rounded-2xl shadow-xl shadow-primary/20 border border-muted hover:border-primary/30 transition-all duration-500 h-[600px]">
+              {/* Full Background Image */}
+              <div
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                style={{
+                  backgroundImage: "url('/gallery/image2.jpg')",
+                }} /* REPLACE WITH YOUR IMAGE */
+              >
                 {/* Dark overlay for text readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/40 to-background/60"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/70 to-transparent"></div>
               </div>
 
               {/* Card Header */}
@@ -119,7 +124,7 @@ const EventsSection: React.FC = () => {
 
               {/* Card Content */}
               <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
-                <div className="bg-background/70 backdrop-blur-md rounded-xl p-6 border border-muted">
+                <div className="bg-background/80 backdrop-blur-md rounded-xl p-6 border border-muted shadow-lg shadow-secondary/10">
                   <div className="space-y-4">
                     <div className="flex items-center text-sm text-muted-foreground">
                       <Clock className="w-4 h-4 mr-2" />
@@ -152,11 +157,16 @@ const EventsSection: React.FC = () => {
             }}
             whileTap={{ scale: 0.98 }}
           >
-            <div className="relative overflow-hidden rounded-2xl shadow-sm border border-muted hover:border-primary/30 transition-all duration-500 h-[600px]">
-              {/* Full Background */}
-              <div className="absolute inset-0 bg-muted/10">
+            <div className="relative overflow-hidden rounded-2xl shadow-xl shadow-primary/20 border border-muted hover:border-primary/30 transition-all duration-500 h-[600px]">
+              {/* Full Background Image */}
+              <div
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                style={{
+                  backgroundImage: "url('/gallery/image1.jpg')",
+                }} /* REPLACE WITH YOUR IMAGE */
+              >
                 {/* Dark overlay for text readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/40 to-background/60"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/70 to-transparent"></div>
               </div>
 
               {/* Card Header */}
@@ -174,7 +184,7 @@ const EventsSection: React.FC = () => {
 
               {/* Card Content */}
               <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
-                <div className="bg-background/70 backdrop-blur-md rounded-xl p-6 border border-muted">
+                <div className="bg-background/80 backdrop-blur-md rounded-xl p-6 border border-muted shadow-lg shadow-secondary/10">
                   <div className="space-y-4">
                     <div className="flex items-center text-sm text-muted-foreground">
                       <Clock className="w-4 h-4 mr-2" />
