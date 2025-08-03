@@ -61,7 +61,7 @@ const items = [
 
 const InfiniteGallery = () => {
   return (
-    <div style={{ height: "100vh", position: "relative" }} className="bg-background" >
+    <div style={{ height: "100vh", position: "relative" }} className="bg-[#ffffff]" >
       <InfiniteMenu items={items} />
     </div>
   );
