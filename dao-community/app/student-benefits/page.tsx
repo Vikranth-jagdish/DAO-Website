@@ -2,10 +2,7 @@
 
 import {
   BellIcon,
-  CalendarIcon,
-  FileTextIcon,
   GlobeIcon,
-  InputIcon,
   PersonIcon,
   RocketIcon,
   MagnifyingGlassIcon,
@@ -88,7 +85,7 @@ function BentoDemo() {
 
 export default function StudentBenefitsPage() {
   return (
-    <div className="min-h-screen bg-daoBg py-20 px-8">
+    <div className="min-h-screen bg-daoBg py-20 px-8 mt-13">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h1 className="font-orbitron text-4xl md:text-6xl font-bold text-textPrimary mb-4">
@@ -104,5 +101,3 @@ export default function StudentBenefitsPage() {
     </div>
   );
 }
-
-export { BentoDemo };

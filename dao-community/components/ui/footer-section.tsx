@@ -12,7 +12,6 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import React from "react";
-import { cn } from "@/lib/utils"; // Ensure this is imported if you're using it
 
 export function FooterSection() {
   const socialLinks = [

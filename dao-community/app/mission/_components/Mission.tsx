@@ -40,7 +40,7 @@ const imageParallax = {
 
 export default function MissionVisionPage() {
   return (
-    <main className="container mx-auto px-4 py-12 md:py-16 lg:py-20">
+    <main className="container mx-auto px-4 py-12 md:py-16 lg:py-20 mt-15">
       {/* Hero Section */}
       <motion.section
         initial="offscreen"

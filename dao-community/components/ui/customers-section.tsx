@@ -2,6 +2,7 @@ import React from "react"
 import Link from "next/link"
 import { ChevronRight } from "lucide-react"
 import { AnimatedGroup } from "@/components/ui/animated-group"
+import Image from "next/image"
 
 const transitionVariants = {
   item: {
@@ -63,7 +64,7 @@ export function CustomersSection({ customers = [], className }: CustomersSection
         >
           {customers.map((logo, index) => (
             <div key={index} className="flex items-center justify-center p-12 md:p-16 glass-card rounded-2xl border border-accentMagenta/20 hover:border-accentMagenta/40 transition-all duration-300 backdrop-blur-md bg-daoSurface/30 h-[300px] w-[350px] md:h-[350px] md:w-[400px]">
-              <img
+              <Image
                 className="w-full h-full object-contain opacity-90 hover:opacity-100 transition-opacity duration-300"
                 src={logo.src}
                 alt={logo.alt}
