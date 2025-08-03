@@ -7,13 +7,13 @@ export function TimelineDemo() {
     {
       title: "Blocktalk - September 1st, 2025",
       content: (
-        <div className="bg-muted p-4 rounded-xl">
-          <p className="text-muted-foreground text-xs md:text-sm font-normal mb-8">
+        <div className="bg p-4 rounded-xl">
+          <p className="text-muted-foreground text-sm md:text-base font-normal mb-8">
             Get ready for an insightful session on blockchain technology!
           </p>
           <Image
             alt="Blocktalk event image"
-            src={`/timeline/blocktalk.png`} // Assuming you have an image for Blocktalk
+            src={`/timeline/blocktalk.png`}
             width={700}
             height={500}
             className="rounded-lg object-cover w-full shadow"
@@ -22,10 +22,10 @@ export function TimelineDemo() {
       ),
     },
     {
-      title: "Voyage - September 2nd, 3rd, 4th, 2025",
+      title: "Voyage - September 24th , 25th and  26 th, 2025",
       content: (
-        <div className="bg-muted p-4 rounded-xl">
-          <p className="text-muted-foreground text-xs md:text-sm font-normal mb-8">
+        <div className="bg p-4 rounded-xl">
+          <p className="text-muted-foreground text-base md:text-lg font-normal mb-8">
             Embark on a journey of discovery with our multi-day event!
           </p>
           <Image
@@ -41,8 +41,8 @@ export function TimelineDemo() {
     {
       title: "Neural DAO - September 18th, 19th, 2025",
       content: (
-        <div className="bg-muted p-4 rounded-xl">
-          <p className="text-muted-foreground text-xs md:text-sm font-normal mb-8">
+        <div className="bg p-4 rounded-xl">
+          <p className="text-muted-foreground text-sm md:text-base font-normal mb-8">
             Explore the intersection of AI and Decentralized Autonomous
             Organizations.
           </p>
@@ -59,8 +59,8 @@ export function TimelineDemo() {
     {
       title: "Crypto Trading Seminar - October 21st, 2025",
       content: (
-        <div className="bg-muted p-4 rounded-xl">
-          <p className="text-muted-foreground text-xs md:text-sm font-normal mb-8">
+        <div className="bg p-4 rounded-xl">
+          <p className="text-muted-foreground text-sm md:text-base font-normal mb-8">
             Deep dive into the world of crypto trading with our seminar!
           </p>
           <div className="grid grid-cols-2 gap-4">
@@ -85,8 +85,8 @@ export function TimelineDemo() {
     {
       title: "Defy'26 - January 8th, 9th, 10th, 2026",
       content: (
-        <div className="bg-muted p-4 rounded-xl">
-          <p className="text-muted-foreground text-xs md:text-sm font-normal mb-4">
+        <div className="bg p-4 rounded-xl">
+          <p className="text-muted-foreground text-sm md:text-base font-normal mb-4">
             Mark your calendars for our flagship event of the new year!
           </p>
           <div className="grid grid-cols-2 gap-4">
@@ -111,8 +111,8 @@ export function TimelineDemo() {
     {
       title: "Solidity 101 - February 2nd, 2026",
       content: (
-        <div className="bg-muted p-4 rounded-xl">
-          <p className="text-muted-foreground text-xs md:text-sm font-normal mb-4">
+        <div className="bg p-4 rounded-xl">
+          <p className="text-muted-foreground text-sm md:text-base font-normal mb-4">
             Kickstart your Web3 journey with Solidity fundamentals!
           </p>
           <div className="grid grid-cols-2 gap-4">

@@ -5,18 +5,20 @@ import {
   Github,
   Twitter,
   Linkedin,
-  Disc,
   Mail,
   Globe,
   MapPin,
+  Instagram,
 } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 export function FooterSection() {
   const socials = [
     {
-      name: "Discord",
-      icon: Disc,
-      link: "#", // Add actual links here
+      name: "Instagram",
+      icon: Instagram,
+      link: "https://www.instagram.com/daocommunity_/", // Add actual links here
     },
     {
       name: "Twitter",
@@ -26,7 +28,7 @@ export function FooterSection() {
     {
       name: "LinkedIn",
       icon: Linkedin,
-      link: "#",
+      link: "https://www.linkedin.com/company/daovitcc/posts/?feedView=all",
     },
     {
       name: "GitHub",
@@ -38,8 +40,8 @@ export function FooterSection() {
   const contactItems = [
     {
       icon: Mail,
-      text: "hello@daocommunity.org",
-      link: "mailto:hello@daocommunity.org",
+      text: "chennai.daocommunity@vit.ac.in",
+      link: "mailto:chennai.daocommunity@vit.ac.in",
     },
     {
       icon: Globe,
@@ -53,7 +55,13 @@ export function FooterSection() {
     },
   ];
 
-  const quickLinks = ["About Us", "Events", "Benefits", "Sponsors", "Contact"];
+  const quickLinks = [
+    { name: "Mission & Vision", href: "/mission" },
+    { name: "Events", href: "/events" },
+    { name: "Sponsors", href: "/sponsors" },
+    { name: "Gallery", href: "/gallery" },
+    { name: "Student Benefits", href: "/student-benefits" },
+  ];
 
   return (
     <footer
@@ -87,11 +95,16 @@ export function FooterSection() {
           >
             <div className="flex items-center mb-6">
               <motion.div
-                className="w-10 h-10 rounded-lg mr-3 flex items-center justify-center bg-primary" // bg-primary
+                className="w-10 h-10 rounded-lg mr-3 flex items-center justify-center " // bg-primary
                 whileHover={{ rotate: 15 }}
               >
-                {/* SVG icon using text-primary-foreground */}
-                <svg
+                <Image
+                  src={"/daopng.png"}
+                  height={200}
+                  width={200}
+                  alt="logo"
+                />
+                {/* <svg
                   viewBox="0 0 24 24"
                   className="w-6 h-6 text-primary-foreground" // text-primary-foreground
                 >
@@ -99,7 +112,7 @@ export function FooterSection() {
                     fill="currentColor"
                     d="M12 2L2 7v10l10 5l10-5V7L12 2m0 2.8L20 9v6l-8 4l-8-4V9l8-4.2M12 12l-5 2v3l5 2l5-2v-3l-5-2z"
                   />
-                </svg>
+                </svg> */}
               </motion.div>
               <h3 className="font-bold text-3xl text-foreground">
                 {" "}
@@ -161,17 +174,17 @@ export function FooterSection() {
               Quick Links
             </h4>
             <ul className="space-y-3">
-              {quickLinks.map((link) => (
+              {quickLinks.map((item, index) => (
                 <motion.li
-                  key={link}
+                  key={index}
                   whileHover={{
                     x: 5,
                     transition: { type: "spring", stiffness: 300 },
                   }}
                   className="relative"
                 >
-                  <a
-                    href="#" // Add actual link paths here
+                  <Link
+                    href={item.href}
                     className="text-lg flex items-center group text-muted-foreground hover:text-foreground transition-colors" // text-muted-foreground, hover:text-foreground
                   >
                     <motion.span
@@ -190,8 +203,10 @@ export function FooterSection() {
                     >
                       →
                     </motion.span>
-                    <span className="ml-4 group-hover:underline">{link}</span>
-                  </a>
+                    <span className="ml-4 group-hover:underline">
+                      {item.name}
+                    </span>
+                  </Link>
                 </motion.li>
               ))}
             </ul>
@@ -258,32 +273,6 @@ export function FooterSection() {
               Built with <span className="text-destructive">❤️</span> for the
               blockchain future.
             </motion.p>
-            <div className="flex space-x-6">
-              {["Privacy Policy", "Terms of Service"].map((item, index) => (
-                <motion.a
-                  key={index}
-                  href="#" // Add actual links here
-                  className="relative text-muted-foreground hover:text-foreground transition-colors" // text-muted-foreground, hover:text-foreground
-                  whileHover={{
-                    scale: 1.05,
-                    transition: {
-                      duration: 0.2,
-                    },
-                  }}
-                >
-                  {item}
-                  <motion.span
-                    className="absolute bottom-0 left-0 w-0 h-px bg-primary" // bg-primary
-                    whileHover={{
-                      width: "100%",
-                      transition: {
-                        duration: 0.3,
-                      },
-                    }}
-                  />
-                </motion.a>
-              ))}
-            </div>
           </div>
         </motion.div>
       </div>

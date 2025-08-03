@@ -74,7 +74,7 @@ export default function HeroSection() {
               {/* Added Link for navigation */}
               <Button
                 size="lg"
-                className="group bg-primary px-10 py-7 text-xl font-bold hover:bg-primary/90 transition-colors duration-300 shadow-lg hover:shadow-xl"
+                className="group bg-background  px-10 py-7 text-xl font-bold hover:bg-background/70 transition-colors duration-300 shadow-lg hover:shadow-xl"
               >
                 Explore & Join Us
                 <ArrowRight className="ml-3 h-5 w-5 transition-transform group-hover:translate-x-2" />

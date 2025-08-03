@@ -104,8 +104,8 @@ export function ExpandedTabs({
               className={cn(
                 "relative flex items-center rounded-2xl transition-all duration-300",
                 "px-2 py-2 text-sm", // Mobile
-                "sm:px-4 sm:py-3 sm:text-base", // Small screens and up
-                "md:px-6 md:py-3 md:text-lg", // Medium screens and up
+                "sm:px-4 sm:py-2.5 sm:text-base", // Small screens and up
+                "md:px-6 md:py-2.5 md:text-lg", // Medium screens and up
                 isActive
                   ? cn("bg-muted", activeColor)
                   : "text-muted-foreground hover:bg-muted hover:text-foreground"

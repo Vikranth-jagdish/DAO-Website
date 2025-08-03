@@ -1,4 +1,3 @@
-
 "use client";
 import { FC, useRef, useState, useEffect, MutableRefObject } from "react";
 import { mat4, quat, vec2, vec3 } from "gl-matrix";
@@ -1068,7 +1067,7 @@ class InfiniteGridMenu {
     gl.enable(gl.CULL_FACE);
     gl.enable(gl.DEPTH_TEST);
 
-    gl.clearColor(0, 0, 0, 0);
+    gl.clearColor(0.10588, 0.14902, 0.23137, 1.0);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
     gl.uniformMatrix4fv(
@@ -1282,11 +1281,11 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [] }) => {
   };
 
   return (
-    <div className="relative w-full h-full">
+    <div className="relative w-full h-full ">
       <canvas
         id="infinite-grid-menu-canvas"
         ref={canvasRef}
-        className="cursor-grab w-full h-full overflow-hidden relative outline-none active:cursor-grabbing"
+        className="cursor-grab w-full h-full overflow-hidden relative outline-none active:cursor-grabbing "
       />
 
       {activeItem && (
@@ -1344,7 +1343,7 @@ const InfiniteMenu: FC<InfiniteMenuProps> = ({ items = [] }) => {
           h-[60px]
           grid
           place-items-center
-          bg-[#00ffff]
+          bg-[#bffafa]
           border-[5px]
           border-black
           rounded-full
