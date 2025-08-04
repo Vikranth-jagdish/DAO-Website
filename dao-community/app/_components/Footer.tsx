@@ -1,42 +1,13 @@
 "use client";
 
+import { quickLinks } from "@/constans/quickLins";
+import { socials } from "@/constans/Social";
 import { motion } from "framer-motion";
-import {
-  Github,
-  Twitter,
-  Linkedin,
-  Mail,
-  Globe,
-  MapPin,
-  Instagram,
-} from "lucide-react";
+import { Mail, Globe, MapPin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 export function FooterSection() {
-  const socials = [
-    {
-      name: "Instagram",
-      icon: Instagram,
-      link: "https://www.instagram.com/daocommunity_/", // Add actual links here
-    },
-    {
-      name: "Twitter",
-      icon: Twitter,
-      link: "#",
-    },
-    {
-      name: "LinkedIn",
-      icon: Linkedin,
-      link: "https://www.linkedin.com/company/daovitcc/posts/?feedView=all",
-    },
-    {
-      name: "GitHub",
-      icon: Github,
-      link: "#",
-    },
-  ];
-
   const contactItems = [
     {
       icon: Mail,
@@ -53,14 +24,6 @@ export function FooterSection() {
       text: "Global Community",
       link: "#", // Or a link to a contact page if relevant
     },
-  ];
-
-  const quickLinks = [
-    { name: "Mission & Vision", href: "/mission" },
-    { name: "Events", href: "/events" },
-    { name: "Sponsors", href: "/sponsors" },
-    { name: "Gallery", href: "/gallery" },
-    { name: "Student Benefits", href: "/student-benefits" },
   ];
 
   return (
@@ -148,7 +111,8 @@ export function FooterSection() {
                   className="w-12 h-12 rounded-lg flex items-center justify-center cursor-pointer relative overflow-hidden group
                              bg-muted border border-border" // bg-muted, border-border
                 >
-                  <Icon className="w-5 h-5 text-primary" /> {/* text-primary */}
+                  <Icon className="w-5 h-5 text-primary " />{" "}
+                  {/* text-primary */}
                   <motion.div
                     className="absolute inset-0 opacity-0 bg-primary/10 border border-primary/20" // bg-primary/10, border-primary/20
                     whileHover={{

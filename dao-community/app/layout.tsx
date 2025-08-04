@@ -34,6 +34,10 @@ export const metadata: Metadata = {
     "decentralized",
     "cryptocurrency",
     "web3",
+    "VIT",
+    "VIT Chennai",
+    "Ethereum",
+    "Club",
   ],
 };
 
