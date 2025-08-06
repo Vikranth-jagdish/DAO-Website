@@ -87,7 +87,11 @@ export function ExpandedTabs({
         }
 
         const Icon = tab.icon;
-        const isActive = pathname === tab.href;
+
+        // MODIFIED LINE: Check if the current pathname starts with the tab's href.
+        // Handles the root path ("/") as a special case for an exact match.
+        const isActive =
+          tab.href === "/" ? pathname === "/" : pathname.startsWith(tab.href);
 
         return (
           <Link

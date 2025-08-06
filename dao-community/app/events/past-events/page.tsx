@@ -1,12 +1,14 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
+import { useRouter } from "next/navigation"; // Import useRouter
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { X } from "lucide-react";
+import { X, ArrowLeft } from "lucide-react"; // Import ArrowLeft icon
 import { pastEvents, Event } from "@/constans/pastevents";
 
 export default function PastEventsPage() {
+  const router = useRouter(); // Initialize router
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -48,72 +50,48 @@ export default function PastEventsPage() {
   }, [selectedEvent, closeDialog]);
 
   // --- ANIMATION VARIANTS ---
-
-  // Container variants with proper stagger
+  // (Animation variants remain the same)
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
         when: "beforeChildren",
-        staggerChildren: 0.15, // Stagger each card by 0.15s
-        delayChildren: 0.3, // Initial delay before animation starts
+        staggerChildren: 0.15,
+        delayChildren: 0.3,
       },
     },
   };
-
-  // Card variants with proper entry animation
   const cardItemVariants = {
-    hidden: {
-      y: 60,
-      opacity: 0,
-      scale: 0.95,
-      filter: "blur(4px)",
-    },
+    hidden: { y: 60, opacity: 0, scale: 0.95, filter: "blur(4px)" },
     visible: {
       y: 0,
       opacity: 1,
       scale: 1,
       filter: "blur(0px)",
-      transition: {
-        type: "spring",
-        damping: 15,
-        stiffness: 120,
-        mass: 0.5,
-      },
+      transition: { type: "spring", damping: 15, stiffness: 120, mass: 0.5 },
     },
     hover: {
       y: -10,
       scale: 1.03,
       boxShadow:
         "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
-      transition: {
-        duration: 0.3,
-        ease: "easeOut",
-      },
+      transition: { duration: 0.3, ease: "easeOut" },
     },
   };
-
   const dialogOverlayVariants = {
     hidden: { opacity: 0, backdropFilter: "blur(0px)" },
     visible: {
       opacity: 1,
       backdropFilter: "blur(8px)",
-      transition: {
-        duration: 0.5,
-        ease: [0.22, 1, 0.36, 1],
-      },
+      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
     },
     exit: {
       opacity: 0,
       backdropFilter: "blur(0px)",
-      transition: {
-        duration: 0.3,
-        ease: "easeIn",
-      },
+      transition: { duration: 0.3, ease: "easeIn" },
     },
   };
-
   const dialogContentVariants = {
     hidden: {
       scale: 0.95,
@@ -138,13 +116,9 @@ export default function PastEventsPage() {
       scale: 0.95,
       opacity: 0,
       y: 30,
-      transition: {
-        duration: 0.25,
-        ease: "easeIn",
-      },
+      transition: { duration: 0.25, ease: "easeIn" },
     },
   };
-
   const textContentVariants = {
     hidden: {},
     visible: {
@@ -155,7 +129,6 @@ export default function PastEventsPage() {
       },
     },
   };
-
   const textItemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -171,7 +144,26 @@ export default function PastEventsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background py-12 px-4 sm:px-6 lg:px-8 mt-15 sm:mt-20">
+    <div className="relative min-h-screen bg-background py-12 px-4 sm:px-6 lg:px-8 mt-15 sm:mt-20">
+      {/* --- Back Button --- */}
+      <motion.button
+        onClick={() => router.back()}
+        className="hidden sm:block   absolute top-5 left-4 sm:top-6 sm:left-6 lg:top-8 lg:left-8 z-50  items-center justify-center p-2 bg-background/60 backdrop-blur-sm rounded-full text-foreground hover:bg-muted/80 transition-all duration-300 shadow-md"
+        aria-label="Go back to the previous page"
+        initial={{ opacity: 0, scale: 0.8, x: -20 }}
+        animate={{ opacity: 1, scale: 1, x: 0 }}
+        transition={{
+          type: "spring",
+          damping: 15,
+          stiffness: 200,
+          delay: 0.5,
+        }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        <ArrowLeft size={20} />
+      </motion.button>
+
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: -40 }}

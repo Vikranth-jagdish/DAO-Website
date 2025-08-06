@@ -90,7 +90,7 @@ const EventsSection: React.FC = () => {
             custom={0}
             variants={cardVariants}
             className="group cursor-pointer"
-            onClick={() => handleNavigation("/past-events")}
+            onClick={() => handleNavigation("/events/past-events")}
             whileHover={{
               scale: 1.02,
               transition: { duration: 0.3 },
@@ -150,7 +150,7 @@ const EventsSection: React.FC = () => {
             custom={1}
             variants={cardVariants}
             className="group cursor-pointer"
-            onClick={() => handleNavigation("/upcomming-events")}
+            onClick={() => handleNavigation("/events/upcomming-events")}
             whileHover={{
               scale: 1.02,
               transition: { duration: 0.3 },

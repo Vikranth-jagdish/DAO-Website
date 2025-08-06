@@ -65,18 +65,11 @@ export function TimelineDemo() {
           </p>
           <div className="grid grid-cols-2 gap-4">
             <Image
-              src="https://assets.aceternity.com/pro/hero-sections.png"
+              src="/events/upcomming1.jpg"
               alt="Crypto Trading Seminar image 1"
               width={500}
               height={500}
-              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow"
-            />
-            <Image
-              src="https://assets.aceternity.com/features-section.png"
-              alt="Crypto Trading Seminar image 2"
-              width={500}
-              height={500}
-              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow"
+              className="rounded-lg object-cover h-40 md:h-54 lg:h-60 w-full shadow"
             />
           </div>
         </div>
@@ -91,15 +84,8 @@ export function TimelineDemo() {
           </p>
           <div className="grid grid-cols-2 gap-4">
             <Image
-              src="https://assets.aceternity.com/pro/hero-sections.png"
+              src="/events/upcomming2.jpeg"
               alt="Defy'26 image 1"
-              width={500}
-              height={500}
-              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow"
-            />
-            <Image
-              src="https://assets.aceternity.com/features-section.png"
-              alt="Defy'26 image 2"
               width={500}
               height={500}
               className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow"
@@ -117,15 +103,8 @@ export function TimelineDemo() {
           </p>
           <div className="grid grid-cols-2 gap-4">
             <Image
-              src="https://assets.aceternity.com/pro/bento-grids.png"
+              src="/events/upcomming3.jpeg"
               alt="Solidity 101 image 1"
-              width={500}
-              height={500}
-              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow"
-            />
-            <Image
-              src="https://assets.aceternity.com/cards.png"
-              alt="Solidity 101 image 2"
               width={500}
               height={500}
               className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow"
