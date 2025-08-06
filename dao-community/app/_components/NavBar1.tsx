@@ -30,7 +30,7 @@ export type TabItem = Tab | Separator;
 const tabs: TabItem[] = [
   { title: "Home", icon: Home, href: "/" },
   { title: "Events", icon: CalendarDays, href: "/events" },
-  { type: "separator" },
+  
   { title: "Sponsors", icon: Users, href: "/sponsors" },
   { title: "Mission", icon: Landmark, href: "/mission" },
   { title: "Student Benefits", icon: GraduationCap, href: "/student-benefits" },
