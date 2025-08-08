@@ -4,33 +4,33 @@ import { motion } from 'framer-motion';
 import { Carousel } from './carousel';
 import { BeamsBackground } from './beams-background';
 
-const pastEventsSlides = [
-  {
-    title: "Blockchain Fundamentals Workshop",
-    button: "View Highlights",
-    src: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=600&fit=crop&crop=center"
-  },
-  {
-    title: "Smart Contract Bootcamp", 
-    button: "View Highlights",
-    src: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=600&fit=crop&crop=center"
-  },
-  {
-    title: "DeFi Deep Dive Summit",
-    button: "View Highlights", 
-    src: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=800&h=600&fit=crop&crop=center"
-  },
-  {
-    title: "NFT Creator Workshop",
-    button: "View Highlights",
-    src: "https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?w=800&h=600&fit=crop&crop=center"
-  },
-  {
-    title: "Web3 Gaming Conference",
-    button: "View Highlights",
-    src: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&h=600&fit=crop&crop=center"
-  }
-];
+// const pastEventsSlides = [
+//   {
+//     title: "Blockchain Fundamentals Workshop",
+//     button: "View Highlights",
+//     src: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=600&fit=crop&crop=center"
+//   },
+//   {
+//     title: "Smart Contract Bootcamp", 
+//     button: "View Highlights",
+//     src: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=600&fit=crop&crop=center"
+//   },
+//   {
+//     title: "DeFi Deep Dive Summit",
+//     button: "View Highlights", 
+//     src: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=800&h=600&fit=crop&crop=center"
+//   },
+//   {
+//     title: "NFT Creator Workshop",
+//     button: "View Highlights",
+//     src: "https://images.unsplash.com/photo-1620321023374-d1a68fbc720d?w=800&h=600&fit=crop&crop=center"
+//   },
+//   {
+//     title: "Web3 Gaming Conference",
+//     button: "View Highlights",
+//     src: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&h=600&fit=crop&crop=center"
+//   }
+// ];
 
 const pastEventsStats = [
   { label: "Events Hosted", value: "25+" },
@@ -114,7 +114,7 @@ export function PastEventsSection() {
           className="mb-24"
         >
           <div className="flex justify-center items-center min-h-[80vh]">
-            <Carousel slides={pastEventsSlides} />
+            <Carousel />
           </div>
         </motion.div>
 
