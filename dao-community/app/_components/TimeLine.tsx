@@ -22,11 +22,11 @@ export function TimelineDemo() {
       ),
     },
     {
-      title: "Voyage - September 24th , 25th and  26 th, 2025",
+      title: "Crypto Markets - Voyage September 24th , 25th and  26 th, 2025",
       content: (
         <div className="bg p-4 rounded-xl">
           <p className="text-muted-foreground text-base md:text-lg font-normal mb-8">
-            Embark on a journey of discovery with our multi-day event!
+            A live story based high stakes crypto trading event
           </p>
           <Image
             alt="Voyage event image"
