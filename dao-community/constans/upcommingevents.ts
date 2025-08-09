@@ -19,13 +19,12 @@ export const upcomingEvents: Event[] = [
   },
   {
     id: "upc-2",
-    title: "Voyage",
+    title: "StockMarket",
     date: "September 2nd, 3rd, 4th, 2025",
-    shortDescription:
-      "An immersive multi-day event exploring various tech domains.",
+    shortDescription: "A live story based high stakes crypto trading event",
     fullDescription:
-      "Voyage is our flagship multi-day event, featuring a series of workshops, talks, and challenges across diverse technical domains. From AI to IoT, cybersecurity to cloud computing, prepare for an intensive learning experience designed to expand your skills and horizons. Network with experts and peers, and discover new passions.",
-    images: ["/timeline/voyage.png"],
+      "Dive into the thrilling world of live crypto trading where top traders battle in real time for millions. Each decision—buy, sell, or hold—can trigger massive gains or devastating losses. With market shocks, insider leaks, and rapid price swings, tension runs high as fortunes hang by a thread. Watch strategy, nerve, and technology collide in this heart-pounding race for ultimate crypto supremacy!",
+    images: ["/events/upcomming2.jpeg"],
   },
   {
     id: "upc-3",
