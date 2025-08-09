@@ -29,8 +29,8 @@ export function TimelineDemo() {
             A live story based high stakes crypto trading event
           </p>
           <Image
-            alt="Voyage event image"
-            src={`/timeline/voyage.png`}
+            alt=" Stock Market event image"
+            src={`/events/upcomming2.jpeg`}
             width={700}
             height={500}
             className="rounded-lg object-cover w-full shadow"
