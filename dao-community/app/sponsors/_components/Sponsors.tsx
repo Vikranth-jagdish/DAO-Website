@@ -115,8 +115,8 @@ const SponsorsPage: React.FC = () => {
                   variants={imageVariants}
                 >
                   <Image
-                    src={`/Sponsors/${sponsor}.png`}
-                    alt={`${sponsor.toLowerCase()} logo`}
+                    src={`/Sponsors/${sponsor.toLowerCase()}logo.png`}
+                    alt={`${sponsor} logo`}
                     fill
                     className="object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300"
                     quality={100}
