@@ -3,6 +3,7 @@
 import { quickLinks } from "@/constans/quickLins";
 import { socials } from "@/constans/Social";
 import { motion, useInView } from "framer-motion";
+import { FollowInstagramDialog } from "./FollowInstagramDialog";
 import { Mail, Globe, MapPin, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -166,22 +167,26 @@ export function FooterSection() {
                   <motion.div
                     key={index}
                     className="group relative"
-                    whileHover={{ x: 4 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    whileHover={{ x: 2 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 22 }}
                   >
                     <Link
                       href={item.href}
-                      className="flex items-center text-muted-foreground hover:text-foreground transition-colors duration-300"
+                      className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors duration-300 relative"
                     >
-                      <motion.div
-                        className="w-4 mr-3 flex justify-center"
-                        initial={{ opacity: 0, x: -4 }}
-                        whileHover={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.3 }}
+                      {/* Hover arrow that doesn't shift baseline */}
+                      <motion.span
+                        className="absolute -left-5 opacity-0 group-hover:opacity-100 group-hover:-left-6 flex items-center justify-center text-primary"
+                        initial={false}
+                        transition={{
+                          type: "spring",
+                          stiffness: 400,
+                          damping: 30,
+                        }}
                       >
-                        <ArrowRight className="w-3 h-3 text-primary" />
-                      </motion.div>
-                      <span className="group-hover:underline underline-offset-4 decoration-primary/50">
+                        <ArrowRight className="w-3 h-3" />
+                      </motion.span>
+                      <span className="pl-0 group-hover:underline underline-offset-4 decoration-primary/50">
                         {item.name}
                       </span>
                     </Link>
@@ -228,20 +233,7 @@ export function FooterSection() {
                 Join our community to stay updated with the latest Web3
                 innovations, events, and opportunities.
               </p>
-              <motion.a
-                href="https://chat.whatsapp.com/JbNHLO9WMBzCzys5xoVGfG"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center px-4 py-2 bg-primary/10 hover:bg-primary/15 border border-primary/20 rounded-xl text-primary font-medium text-sm transition-all duration-300"
-                whileHover={{
-                  scale: 1.02,
-                  transition: { type: "spring", stiffness: 300, damping: 20 },
-                }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Join Community
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </motion.a>
+              <FooterFollowCTA />
             </motion.div>
           </motion.div>
 
@@ -278,6 +270,49 @@ export function FooterSection() {
           </motion.div>
         </div>
       </div>
+      <FooterFollowDialogHost />
     </footer>
   );
 }
+
+const FooterFollowDialogContext = React.createContext<{
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+} | null>(null);
+
+const FooterFollowDialogHost: React.FC = () => {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <FooterFollowDialogContext.Provider value={{ open, setOpen }}>
+      <FollowInstagramDialog open={open} onClose={() => setOpen(false)} />
+    </FooterFollowDialogContext.Provider>
+  );
+};
+
+const FooterFollowCTA: React.FC = () => {
+  const ctx = React.useContext(FooterFollowDialogContext);
+  const [localOpen, setLocalOpen] = React.useState(false);
+  // Fallback if context not yet mounted
+  const open = ctx?.open ?? localOpen;
+  const setOpen = ctx?.setOpen ?? setLocalOpen;
+  return (
+    <>
+      <motion.button
+        onClick={() => setOpen(true)}
+        className="inline-flex items-center px-4 py-2 bg-primary/10 hover:bg-primary/15 border border-primary/20 rounded-xl text-primary font-medium text-sm transition-all duration-300"
+        whileHover={{
+          scale: 1.02,
+          transition: { type: "spring", stiffness: 300, damping: 20 },
+        }}
+        whileTap={{ scale: 0.98 }}
+      >
+        Follow Us (Recruitment Updates)
+        <ArrowRight className="w-4 h-4 ml-2" />
+      </motion.button>
+      {/* Local dialog fallback if provider missing */}
+      {!ctx && (
+        <FollowInstagramDialog open={open} onClose={() => setOpen(false)} />
+      )}
+    </>
+  );
+};

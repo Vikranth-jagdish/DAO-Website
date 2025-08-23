@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion, useInView } from "framer-motion";
+import { FollowInstagramDialog } from "@/app/_components/FollowInstagramDialog";
 import Image from "next/image";
 
 const containerVariants = {
@@ -306,13 +307,7 @@ export default function MissionVisionPage() {
                   world.
                 </p>
 
-                <motion.button
-                  className="px-8 py-4 bg-gradient-to-r from-primary to-secondary text-primary-foreground rounded-2xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Join Our Community
-                </motion.button>
+                <MissionFollowCTA />
               </div>
 
               {/* Hover Glow Effect */}
@@ -331,3 +326,20 @@ export default function MissionVisionPage() {
     </div>
   );
 }
+
+const MissionFollowCTA: React.FC = () => {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <>
+      <motion.button
+        className="px-8 py-4 bg-gradient-to-r from-primary to-secondary text-primary-foreground rounded-2xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        onClick={() => setOpen(true)}
+      >
+        Follow Us For Recruitment Updates
+      </motion.button>
+      <FollowInstagramDialog open={open} onClose={() => setOpen(false)} />
+    </>
+  );
+};

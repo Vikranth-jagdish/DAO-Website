@@ -1,9 +1,9 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import Link from "next/link";
+import { FollowInstagramDialog } from "./FollowInstagramDialog";
 
 export default function HeroSection() {
   // Professional animation variants
@@ -45,23 +45,6 @@ export default function HeroSection() {
       y: 0,
       transition: {
         duration: 0.7,
-        ease: [0.25, 0.46, 0.45, 0.94],
-      },
-    },
-  };
-
-  const ctaVariant = {
-    hidden: {
-      opacity: 0,
-      y: 25,
-      scale: 0.9,
-    },
-    show: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.6,
         ease: [0.25, 0.46, 0.45, 0.94],
       },
     },
@@ -115,45 +98,7 @@ export default function HeroSection() {
           </motion.p>
 
           {/* Premium CTA Button */}
-          <motion.div variants={ctaVariant} className="flex justify-center">
-            <Link href="#about" passHref>
-              <motion.div
-                whileHover={{
-                  scale: 1.05,
-                  transition: {
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 20,
-                  },
-                }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Button
-                  size="lg"
-                  className="group relative overflow-hidden bg-background text-foreground px-10 py-7 text-xl font-bold rounded-xl border border-border/40 hover:bg-background/80 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-primary/20"
-                >
-                  {/* Button Background Glow Effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
-
-                  {/* Button Content */}
-                  <span className="relative z-10 flex items-center">
-                    Explore & Join Our Community
-                    <motion.div
-                      className="ml-3"
-                      animate={{ x: [0, 4, 0] }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                    >
-                      <ArrowRight className="h-6 w-6 transition-transform group-hover:translate-x-2 duration-300" />
-                    </motion.div>
-                  </span>
-                </Button>
-              </motion.div>
-            </Link>
-          </motion.div>
+          <HeroFollowCTA />
         </motion.div>
       </div>
 
@@ -162,3 +107,47 @@ export default function HeroSection() {
     </section>
   );
 }
+
+// CTA component with Instagram dialog
+const HeroFollowCTA: React.FC = () => {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <>
+      <motion.div
+        variants={{
+          hidden: { opacity: 0, y: 25, scale: 0.9 },
+          show: {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] },
+          },
+        }}
+        className="flex justify-center"
+      >
+        <motion.button
+          onClick={() => setOpen(true)}
+          whileHover={{
+            scale: 1.05,
+            transition: { type: "spring", stiffness: 300, damping: 20 },
+          }}
+          whileTap={{ scale: 0.97 }}
+          className="group relative overflow-hidden bg-background text-foreground px-10 py-4 text-xl font-bold rounded-xl border border-border/40 hover:bg-background/80 transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-primary/20"
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
+          <span className="relative z-10 flex items-center">
+            Explore & Join Our Community
+            <motion.div
+              className="ml-3"
+              animate={{ x: [0, 4, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <ArrowRight className="h-6 w-6 transition-transform group-hover:translate-x-2 duration-300" />
+            </motion.div>
+          </span>
+        </motion.button>
+      </motion.div>
+      <FollowInstagramDialog open={open} onClose={() => setOpen(false)} />
+    </>
+  );
+};

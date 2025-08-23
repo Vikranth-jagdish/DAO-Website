@@ -176,7 +176,7 @@ const EventsSection: React.FC = () => {
                     <div className="bg-background/80 backdrop-blur-md rounded-xl p-4 border border-border/40 shadow-lg">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center">
-                          <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mr-3">
+                          <div className="w-10 h-10 bg-primary/10 flex items-center justify-center mr-3 rounded-4xl">
                             <Calendar className="w-5 h-5 text-primary" />
                           </div>
                           <h2 className="text-xl font-bold text-foreground">
@@ -268,7 +268,7 @@ const EventsSection: React.FC = () => {
                     <div className="bg-background/80 backdrop-blur-md rounded-xl p-4 border border-border/40 shadow-lg">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center">
-                          <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center mr-3">
+                          <div className="w-10 h-10 rounded-4xl bg-secondary/10 flex items-center justify-center mr-3">
                             <Sparkles className="w-5 h-5 text-secondary" />
                           </div>
                           <h2 className="text-xl font-bold text-foreground">
