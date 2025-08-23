@@ -31,9 +31,55 @@ export const upcomingEvents: Event[] = [
     title: "Neural DAO",
     date: "September 18th, 19th, 2025",
     shortDescription:
-      "Explore the intersection of AI and Decentralized Autonomous Organizations.",
+      "A 24-hour hackathon focused on AI and Blockchain, hosted by The DAO Community at VIT, Chennai.",
     fullDescription:
-      "Neural DAO will delve into the exciting synergy between Artificial Intelligence and Decentralized Autonomous Organizations. Learn how AI can enhance DAO governance, efficiency, and decision-making, and how DAOs can foster collaborative AI development. This event will feature expert talks, case studies, and brainstorming sessions.",
+      `NeuralDAO is a 24-hour, high-intensity hackathon focused on the intersection of Artificial Intelligence and Blockchain. Hosted by The DAO Community, it is designed to bring together student developers, innovators, and tech enthusiasts to create cutting-edge solutions. The event aims to foster innovation and showcase the next generation of tech talent.
+
+Dates: September 18th - 19th, 2025
+Venue: VIT, Chennai
+Organizer: The DAO Community, a prominent Web3 society in Chennai
+
+Hackathon Structure and Tracks
+The event follows a structured, 24-hour format to maximize productivity and collaboration.
+
+- 24-Hour Build Sprint: Participants will form teams to conceptualize, develop, and prototype their ideas in a fast-paced environment.
+- Mentorship & Resources: Teams will have access to industry mentors and technical support to help refine their projects and overcome challenges.
+- Demo & Judging: A panel of experts, including product leaders and pioneers in AI and blockchain, will evaluate the final projects.
+
+Participants can build projects under the following tracks:
+- Artificial Intelligence
+- Blockchain
+- Open Innovation
+
+Organizer's Track Record
+The DAO Community has a proven history of organizing successful hackathons with significant engagement.
+
+- Defy: This flagship event attracted over 800 project submissions and achieved a 78% conversion rate of attendees to long-term followers.
+- Entropy: This event saw more than 1,500 team registrations, with 113 teams advancing to the final round.
+
+Past events have been supported by sponsors such as Jio, Unstop, Quick Node, and QuillAudits.
+
+Opportunities for Sponsors
+NeuralDAO offers sponsors a unique platform to engage with emerging talent and showcase their technologies.
+
+Key Benefits
+- Talent Pipeline: Gain direct access to top student developers from VIT Chennai, with 70% actively seeking jobs and 30% open to opportunities.
+- Early Access to Innovation: Discover and support innovative projects before they enter the market. Several past winners have gone on to become real-world startups.
+- Product Validation: Demo APIs, SDKs, and platforms to over 500 engaged developers, gathering real-time feedback and driving adoption.
+- Marketing Reach: Achieve high visibility across social media and developer platforms through teaser campaigns, live event coverage, and recaps.
+
+Sponsorship Tiers
+- Platinum Tier: ₹25,000+ (Includes premium brand exposure, the opportunity to have branded event tracks, and speaker slots.)
+- Gold Tier: ₹17,000+ (Features prime logo placement, direct connection with talent, and product integration opportunities.)
+- Silver Tier: ₹8,000+ (Offers brand exposure and inclusion in the event's marketing campaigns.)
+
+Additional benefits can be negotiated.
+
+Contact Information
+For partnership inquiries, you can reach out to the organizers:
+- Sanjana PS: +91 98403 71577
+- Surya: +91 70101 47377
+- Email: chennai.daocommunity@vit.ac.in`,
     images: ["/timeline/neuraldao.png"],
   },
   {

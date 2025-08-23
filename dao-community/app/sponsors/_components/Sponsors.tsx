@@ -1,141 +1,189 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { sponsorNames } from "@/constans/SponsorDetails";
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+    },
+  },
+};
 
 const cardVariants = {
   hidden: {
     opacity: 0,
-    scale: 0.9,
-    y: 30,
-    rotateX: 10,
+    y: 40,
+    scale: 0.95,
   },
-  visible: (i: number) => ({
+  visible: {
     opacity: 1,
-    scale: 1,
     y: 0,
-    rotateX: 0,
+    scale: 1,
     transition: {
       type: "spring",
-      damping: 15,
-      stiffness: 100,
-      delay: i * 0.08,
+      damping: 25,
+      stiffness: 120,
+      mass: 0.8,
     },
-  }),
+  },
   hover: {
-    scale: 1.05,
-    y: -10,
-    rotateX: -5,
-    // ✨ CHANGE: Updated shadow to use the primary theme color for a glow effect
-    boxShadow: "0 15px 35px hsl(var(--primary) / 0.3)",
+    scale: 1.02,
+    y: -8,
     transition: {
       type: "spring",
-      stiffness: 400,
-      damping: 10,
+      stiffness: 300,
+      damping: 20,
     },
   },
 };
 
 const imageVariants = {
   hover: {
-    scale: 1.1,
+    scale: 1.05,
     transition: {
-      duration: 0.4,
-      ease: "easeOut",
+      duration: 0.6,
+      ease: [0.25, 0.1, 0.25, 1],
     },
   },
 };
 
 const textVariants = {
-  hidden: { opacity: 0, y: 10 },
   hover: {
-    opacity: 1,
-    y: 0,
+    scale: 1.05,
+    color: "hsl(var(--primary))",
     transition: {
-      delay: 0.1,
       duration: 0.3,
+      ease: "easeOut",
+    },
+  },
+};
+
+const shimmerVariants = {
+  initial: { x: "-100%" },
+  hover: {
+    x: "100%",
+    transition: {
+      duration: 0.8,
+      ease: "easeInOut",
     },
   },
 };
 
 const SponsorsPage: React.FC = () => {
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   return (
-    <div className="min-h-screen bg-background text-foreground mt-6">
-      {/* Header */}
-      <div className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto text-center">
-          <motion.h1
-            className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight"
-            initial={{ opacity: 0, y: -30 }}
+    <div className="min-h-screen bg-background flex flex-col">
+      {/* Hero Section */}
+      <div className="relative overflow-hidden px-4 sm:px-6 lg:px-8 py-24 md:py-28">
+        <div className="absolute inset-0 "></div>
+        <div className="relative max-w-7xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
               type: "spring",
-              stiffness: 100,
-              damping: 10,
-              duration: 0.8,
+              damping: 25,
+              stiffness: 120,
+              delay: 0.2,
             }}
           >
-            Our <span className="text-primary">Sponsors</span>
-          </motion.h1>
-          <motion.p
-            className="text-xl text-muted-foreground max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.6,
-              delay: 0.3,
-              ease: "easeOut",
-            }}
-          >
-            Visionary organizations powering our mission and community.
-          </motion.p>
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 md:mb-8 tracking-tight">
+              Our{" "}
+              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                Sponsors
+              </span>
+            </h1>
+            <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl md:max-w-4xl mx-auto leading-relaxed font-light">
+              Trusted organizations shaping the future of decentralized
+              innovation
+            </p>
+          </motion.div>
         </div>
       </div>
 
       {/* Sponsors Grid */}
-      <div className="px-4 sm:px-6 lg:px-8 pb-24">
+      <div className="px-4 sm:px-6 lg:px-8 pb-24 md:pb-32 flex-1" ref={ref}>
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            {sponsorNames.map((sponsor, index) => (
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 xl:gap-10"
+            variants={containerVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
+            {sponsorNames.map((sponsor) => (
               <motion.div
                 key={sponsor}
-                className="group relative h-72 rounded-2xl overflow-hidden shadow-lg
-                           flex flex-col items-center justify-end p-6 border border-border/30
-                           bg-gradient-to-br from-primary/10 to-background/40 backdrop-blur-sm"
+                className="group relative h-72 md:h-80 rounded-3xl overflow-hidden
+                           bg-gradient-to-br from-card/95 to-muted/30
+                           border border-border/40 backdrop-blur-sm
+                           hover:border-primary/40 transition-colors duration-500"
                 variants={cardVariants}
-                initial="hidden"
-                animate="visible"
-                custom={index}
                 whileHover="hover"
+                style={{
+                  boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)",
+                }}
               >
-                {/* Logo Image */}
+                {/* Shimmer Effect */}
                 <motion.div
-                  className="absolute inset-0 flex items-center justify-center p-8"
-                  variants={imageVariants}
-                >
-                  <Image
-                    src={`/Sponsors/${sponsor.toLowerCase()}logo.png`}
-                    alt={`${sponsor} logo`}
-                    fill
-                    className="object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300"
-                    quality={100}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                  />
-                </motion.div>
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/10 to-transparent opacity-0 group-hover:opacity-100"
+                  variants={shimmerVariants}
+                  initial="initial"
+                  whileHover="hover"
+                  style={{
+                    transform: "skewX(-25deg)",
+                  }}
+                />
 
-                {/* Sponsor Name */}
-                <motion.div
-                  className="relative z-10 w-full text-center pt-4"
-                  variants={textVariants}
-                >
-                  <h3 className="text-xl font-bold text-foreground px-4 py-2 rounded-lg">
-                    {sponsor}
-                  </h3>
-                </motion.div>
+                {/* Glow Effect */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div
+                    className="absolute inset-0 rounded-3xl"
+                    style={{
+                      boxShadow: "0 0 40px hsl(var(--primary) / 0.15)",
+                    }}
+                  />
+                </div>
+
+                {/* Content Container */}
+                <div className="relative h-full flex flex-col items-center justify-center p-6 md:p-8">
+                  {/* Logo Container */}
+                  <motion.div
+                    className="relative w-full h-40 md:h-44 lg:h-48 flex items-center justify-center mb-5 md:mb-6"
+                    variants={imageVariants}
+                  >
+                    <Image
+                      src={`/Sponsors/${sponsor.toLowerCase()}logo.png`}
+                      alt={`${sponsor} logo`}
+                      fill
+                      className="object-contain filter brightness-90 group-hover:brightness-100 transition-all duration-500"
+                      quality={100}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                    />
+                  </motion.div>
+
+                  {/* Sponsor Name */}
+                  <motion.div
+                    className="text-center px-2"
+                    variants={textVariants}
+                  >
+                    <h3 className="text-lg md:text-xl lg:text-2xl font-semibold text-foreground tracking-wide">
+                      {sponsor}
+                    </h3>
+                  </motion.div>
+                </div>
+
+                {/* Bottom Accent Line */}
+                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-primary/0 via-primary/60 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>

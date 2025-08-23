@@ -2,12 +2,42 @@
 
 import { quickLinks } from "@/constans/quickLins";
 import { socials } from "@/constans/Social";
-import { motion } from "framer-motion";
-import { Mail, Globe, MapPin } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { Mail, Globe, MapPin, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import React from "react";
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: {
+    opacity: 0,
+    y: 30,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      damping: 25,
+      stiffness: 120,
+    },
+  },
+};
 
 export function FooterSection() {
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+
   const contactItems = [
     {
       icon: Mail,
@@ -16,209 +46,237 @@ export function FooterSection() {
     },
     {
       icon: Globe,
-      text: "www.daocommunity.org",
-      link: "https://www.daocommunity.org",
+      text: "daocommunity.in",
+      link: "daocommunity.in",
     },
     {
       icon: MapPin,
-      text: "Mambakkam, Tamil Nadu, India", // Updated to a more specific location
+      text: "VIT Chennai, Tamil Nadu, India",
       link: "https://www.google.com/maps/place/Vellore+Institute+of+Technology,+Chennai/",
     },
   ];
 
   return (
     <footer
-      // UPDATED: Responsive vertical padding
-      className="relative py-16 md:py-24 px-8 md:px-16 lg:px-24 bg-background"
-      style={{
-        borderTop: "1px solid var(--border)",
-      }}
+      ref={ref}
+      className="relative bg-background border-t border-border/40"
     >
-      {/* Background Grid */}
-      <div className="absolute inset-0 opacity-5">
+      {/* Subtle Background Pattern */}
+      <div className="absolute inset-0 opacity-[0.02]">
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage:
-              "linear-gradient(to right, hsl(var(--border-strong)) 1px, transparent 1px), linear-gradient(to bottom, hsl(var(--border-strong)) 1px, transparent 1px)",
-            backgroundSize: "24px 24px",
+            backgroundImage: `
+              linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px),
+              linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px)
+            `,
+            backgroundSize: "32px 32px",
           }}
         />
       </div>
 
-      <div className="max-w-8xl mx-auto relative z-10">
-        {/* UPDATED: Responsive gap and bottom margin */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 mb-12 md:mb-16">
-          {/* Brand Section */}
+      {/* Main Footer Content */}
+      <div className="relative px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+        <div className="max-w-7xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="md:col-span-2" // Changed from lg:col-span-2 to md:col-span-2 for better tablet layout
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 mb-16"
+            variants={containerVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
           >
-            <div className="flex items-center mb-6">
-              <motion.div
-                className="w-10 h-10 rounded-lg mr-3 flex items-center justify-center"
-                whileHover={{ rotate: 15 }}
-              >
-                <Image
-                  src={"/daopng.png"}
-                  height={200}
-                  width={200}
-                  alt="logo"
-                />
-              </motion.div>
-              {/* UPDATED: Responsive text size */}
-              <h3 className="font-bold text-2xl sm:text-3xl text-foreground">
-                DAO <span className="text-primary">COMMUNITY</span>
-              </h3>
-            </div>
-            <p className="text-lg leading-relaxed mb-6 max-w-md text-muted-foreground">
-              Empowering the next generation of blockchain innovators through
-              education, community building, and hands-on experience.
-            </p>
-            <div className="flex space-x-4">
-              {socials.map(({ name, icon: Icon, link }) => (
-                <motion.a
-                  key={name}
-                  href={link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  initial={{ scale: 1 }}
+            {/* Brand Section */}
+            <motion.div
+              className="sm:col-span-2 lg:col-span-1 space-y-6"
+              variants={itemVariants}
+            >
+              <div className="flex items-center space-x-3">
+                <motion.div
+                  className="relative w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center overflow-hidden group"
                   whileHover={{
-                    scale: 1.1,
-                    y: -3,
-                    transition: {
-                      type: "spring",
-                      stiffness: 400,
-                      damping: 10,
-                    },
+                    scale: 1.05,
+                    rotate: 5,
+                    transition: { type: "spring", stiffness: 300, damping: 20 },
                   }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-12 h-12 rounded-lg flex items-center justify-center cursor-pointer relative overflow-hidden group bg-muted border border-border"
                 >
-                  <Icon className="w-5 h-5 text-primary" />
-                  <motion.div
-                    className="absolute inset-0 opacity-0 bg-primary/10 border border-primary/20"
-                    whileHover={{
-                      opacity: 1,
-                      transition: { duration: 0.2 },
-                    }}
+                  <Image
+                    src="/daopng.png"
+                    alt="DAO Community Logo"
+                    width={28}
+                    height={28}
+                    className="object-contain"
                   />
-                </motion.a>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Quick Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true, margin: "-100px" }}
-          >
-            <h4 className="font-bold text-xl mb-6 text-primary">Quick Links</h4>
-            <ul className="space-y-3">
-              {quickLinks.map((item, index) => (
-                <motion.li
-                  key={index}
-                  whileHover={{
-                    x: 5,
-                    transition: { type: "spring", stiffness: 300 },
-                  }}
-                  className="relative"
-                >
-                  <Link
-                    href={item.href}
-                    className="text-lg flex items-center group text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    <motion.span
-                      className="absolute left-0 opacity-0 -translate-x-4 text-primary"
-                      initial={{ opacity: 0, x: -16 }}
-                      whileHover={{
-                        opacity: 1,
-                        x: -12,
-                        transition: {
-                          type: "spring",
-                          stiffness: 500,
-                          damping: 20,
-                          duration: 0.3,
-                        },
-                      }}
-                    >
-                      →
-                    </motion.span>
-                    <span className="ml-4 group-hover:underline">
-                      {item.name}
-                    </span>
-                  </Link>
-                </motion.li>
-              ))}
-            </ul>
-          </motion.div>
-
-          {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true, margin: "-100px" }}
-          >
-            <h4 className="font-bold text-xl mb-6 text-primary">
-              Get in Touch
-            </h4>
-            <div className="space-y-4">
-              {contactItems.map(({ icon: Icon, text, link }, index) => (
-                <motion.a
-                  key={index}
-                  href={link}
-                  target={link.startsWith("http") ? "_blank" : "_self"}
-                  rel={link.startsWith("http") ? "noopener noreferrer" : ""}
-                  whileHover={{
-                    scale: 1.02,
-                    x: 3,
-                    transition: {
-                      type: "spring",
-                      stiffness: 500,
-                      duration: 0.2,
-                    },
-                  }}
-                  className="flex items-start group text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  <Icon className="w-5 h-5 mr-3 mt-0.5 text-primary flex-shrink-0" />
-                  {/* UPDATED: Added 'break-all' to prevent text overflow */}
-                  <p className="text-lg group-hover:underline break-all">
-                    {text}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </motion.div>
+                <div>
+                  <h3 className="text-xl font-bold text-foreground tracking-tight">
+                    DAO Community
+                  </h3>
+                  <p className="text-sm text-primary font-medium">
+                    VIT Chennai
                   </p>
-                </motion.a>
-              ))}
+                </div>
+              </div>
+
+              <p className="text-muted-foreground leading-relaxed max-w-sm">
+                Empowering the next generation of blockchain innovators through
+                education, community, and hands-on experience in Web3
+                technologies.
+              </p>
+
+              {/* Social Icons */}
+              <div className="flex space-x-3">
+                {socials.map(({ name, icon: Icon, link }) => (
+                  <motion.a
+                    key={name}
+                    href={link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative w-11 h-11 rounded-xl bg-muted/50 border border-border/40 flex items-center justify-center overflow-hidden"
+                    whileHover={{
+                      scale: 1.1,
+                      y: -2,
+                      transition: {
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 20,
+                      },
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors duration-300 relative z-10" />
+
+                    {/* Hover Glow Effect */}
+                    <div
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"
+                      style={{
+                        boxShadow: "0 0 20px hsl(var(--primary) / 0.3)",
+                        background: "hsl(var(--primary) / 0.1)",
+                      }}
+                    />
+                  </motion.a>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Quick Links */}
+            <motion.div className="space-y-6" variants={itemVariants}>
+              <h4 className="text-lg font-bold text-primary">Quick Links</h4>
+              <nav className="space-y-3">
+                {quickLinks.map((item, index) => (
+                  <motion.div
+                    key={index}
+                    className="group relative"
+                    whileHover={{ x: 4 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  >
+                    <Link
+                      href={item.href}
+                      className="flex items-center text-muted-foreground hover:text-foreground transition-colors duration-300"
+                    >
+                      <motion.div
+                        className="w-4 mr-3 flex justify-center"
+                        initial={{ opacity: 0, x: -4 }}
+                        whileHover={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <ArrowRight className="w-3 h-3 text-primary" />
+                      </motion.div>
+                      <span className="group-hover:underline underline-offset-4 decoration-primary/50">
+                        {item.name}
+                      </span>
+                    </Link>
+                  </motion.div>
+                ))}
+              </nav>
+            </motion.div>
+
+            {/* Contact Info */}
+            <motion.div className="space-y-6" variants={itemVariants}>
+              <h4 className="text-lg font-bold text-primary">Get in Touch</h4>
+              <div className="space-y-4">
+                {contactItems.map(({ icon: Icon, text, link }, index) => (
+                  <motion.a
+                    key={index}
+                    href={link}
+                    target={link.startsWith("http") ? "_blank" : "_self"}
+                    rel={link.startsWith("http") ? "noopener noreferrer" : ""}
+                    className="group flex items-start space-x-3 text-muted-foreground hover:text-foreground transition-colors duration-300"
+                    whileHover={{
+                      x: 2,
+                      transition: {
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 20,
+                      },
+                    }}
+                  >
+                    <div className="w-5 h-5 mt-0.5 flex-shrink-0 flex items-center justify-center">
+                      <Icon className="w-4 h-4 text-primary" />
+                    </div>
+                    <span className="group-hover:underline underline-offset-4 decoration-primary/50 break-words">
+                      {text}
+                    </span>
+                  </motion.a>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Newsletter/CTA Section */}
+            <motion.div className="space-y-6" variants={itemVariants}>
+              <h4 className="text-lg font-bold text-primary">Stay Updated</h4>
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                Join our community to stay updated with the latest Web3
+                innovations, events, and opportunities.
+              </p>
+              <motion.a
+                href="https://chat.whatsapp.com/JbNHLO9WMBzCzys5xoVGfG"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-4 py-2 bg-primary/10 hover:bg-primary/15 border border-primary/20 rounded-xl text-primary font-medium text-sm transition-all duration-300"
+                whileHover={{
+                  scale: 1.02,
+                  transition: { type: "spring", stiffness: 300, damping: 20 },
+                }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Join Community
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </motion.a>
+            </motion.div>
+          </motion.div>
+
+          {/* Bottom Bar */}
+          <motion.div
+            className="pt-8 border-t border-border/40"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
+          >
+            <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
+              <p className="text-muted-foreground text-sm text-center sm:text-left">
+                © {new Date().getFullYear()} DAO Community VIT Chennai. All
+                rights reserved.
+              </p>
+              <p className="text-muted-foreground text-sm flex items-center">
+                Built with{" "}
+                <motion.span
+                  className="mx-1 text-red-500"
+                  animate={{
+                    scale: [1, 1.2, 1],
+                  }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                >
+                  ❤️
+                </motion.span>{" "}
+                for the blockchain future
+              </p>
             </div>
           </motion.div>
         </div>
-
-        {/* Bottom Bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="pt-8 border-t border-border"
-        >
-          <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
-            <motion.p
-              className="text-center md:text-left text-muted-foreground"
-              whileHover={{
-                scale: 1.01,
-                transition: { duration: 0.3 },
-              }}
-            >
-              © {new Date().getFullYear()} DAO Community. All rights reserved.
-              Built with <span className="text-destructive">❤️</span> for the
-              blockchain future.
-            </motion.p>
-          </div>
-        </motion.div>
       </div>
     </footer>
   );
