@@ -107,7 +107,7 @@ export default function MissionVisionPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <div className="relative overflow-hidden px-4 sm:px-6 lg:px-8 py-24">
+      <div className="relative overflow-hidden px-4 sm:px-6 lg:px-8 py-30">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/3 via-background to-secondary/3"></div>
         <div className="relative max-w-7xl mx-auto text-center">
           <motion.div

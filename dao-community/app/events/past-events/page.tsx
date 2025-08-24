@@ -153,7 +153,7 @@ export default function PastEventsPage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-background py-20 px-4 sm:px-6 lg:px-8">
+    <div className="relative min-h-screen bg-background py-26 px-4 sm:px-6 lg:px-8">
       {/* Premium Back Button */}
 
       <div className="max-w-7xl mx-auto">
