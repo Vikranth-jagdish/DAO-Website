@@ -1,5 +1,5 @@
 {
-	"$schema": "https://unpkg.com/jsrepo@2.4.3/schemas/project-config.json",
+	"$schema": "https://unpkg.com/jsrepo@2.4.5/schemas/project-config.json",
 	"repos": [
 		"https://reactbits.dev/ts/tailwind"
 	],
@@ -8,6 +8,6 @@
 	"watermark": true,
 	"configFiles": {},
 	"paths": {
-		"*": "./src/blocks"
+		"*": "./components/reactbits"
 	}
 }

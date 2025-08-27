@@ -2,118 +2,91 @@ import Image from "next/image";
 import React from "react";
 import { Timeline } from "@/components/ui/timeline";
 
+// Define events clearly
+const events = [
+  {
+    name: "Blocktalk",
+    date: "September 1, 2025",
+    description:
+      "Get ready for an insightful session on blockchain technology!",
+    image: "/timeline/blocktalk.png",
+  },
+  {
+    name: "Neural DAO",
+    date: "September 18-19, 2025",
+    description:
+      "Explore the intersection of AI and Decentralized Autonomous Organizations.",
+    image: "/timeline/neuraldao.png",
+  },
+  {
+    name: "Stock Market",
+    date: "September 24-26, 2025",
+    description: "A live story based high stakes crypto trading event.",
+    image: "/events/upcomming2.jpeg",
+  },
+  {
+    name: "Crypto Trading Seminar",
+    date: "October 21, 2025",
+    description: "Deep dive into the world of crypto trading with our seminar!",
+    image: "/events/upcomming1.jpg",
+  },
+  {
+    name: "Defy'26",
+    date: "January 8-10, 2026",
+    description: "Mark your calendars for our flagship event of the new year!",
+    image: "/events/defy26.jpg",
+  },
+  {
+    name: "Solidity 101",
+    date: "February 2, 2026",
+    description: "Kickstart your Web3 journey with Solidity fundamentals!",
+    image: "/events/upcomming3.jpeg",
+  },
+];
+
+// Utility: Convert date string → comparable Date object (takes first day for ranges)
+const parseDate = (dateStr: string) => {
+  const firstDate = dateStr.split(",")[0].split("-")[0].trim();
+  return new Date(`${firstDate}, ${dateStr.split(",").slice(-1)[0]}`);
+};
+
 export function TimelineDemo() {
-  const data = [
-    {
-      title: "Blocktalk - September 1st, 2025",
-      content: (
-        <div className="bg p-4 rounded-xl">
-          <p className="text-muted-foreground text-sm md:text-xl font-normal mb-8">
-            Get ready for an insightful session on blockchain technology!
-          </p>
-          <Image
-            alt="Blocktalk event image"
-            src={`/timeline/blocktalk.png`}
-            width={700}
-            height={500}
-            className="rounded-lg object-cover w-full shadow"
-          />
-        </div>
-      ),
-    },
-    {
-      title: "Stock Market - September 24th , 25th and  26 th, 2025",
-      content: (
-        <div className="bg p-4 rounded-xl">
-          <p className="text-muted-foreground text-base md:text-xl font-normal mb-8">
-            A live story based high stakes crypto trading event
-          </p>
-          <Image
-            alt=" Stock Market event image"
-            src={`/events/upcomming2.jpeg`}
-            width={700}
-            height={500}
-            className="rounded-lg object-cover w-full shadow"
-          />
-        </div>
-      ),
-    },
-    {
-      title: "Neural DAO - September 18th, 19th, 2025",
-      content: (
-        <div className="bg p-4 rounded-xl">
-          <p className="text-muted-foreground text-sm md:text-xl font-normal mb-8">
-            Explore the intersection of AI and Decentralized Autonomous
-            Organizations.
-          </p>
-          <Image
-            alt="Neural DAO event image"
-            src={`/timeline/neuraldao.png`}
-            width={700}
-            height={500}
-            className="rounded-lg object-cover w-full shadow"
-          />
-        </div>
-      ),
-    },
-    {
-      title: "Crypto Trading Seminar - October 21st, 2025",
-      content: (
-        <div className="bg p-4 rounded-xl">
-          <p className="text-muted-foreground text-sm md:text-xl font-normal mb-8">
-            Deep dive into the world of crypto trading with our seminar!
-          </p>
-          <div className="grid grid-cols-2 gap-4">
+  // Sort events by date
+  const sortedEvents = [...events].sort(
+    (a, b) => parseDate(a.date).getTime() - parseDate(b.date).getTime()
+  );
+
+  // Map into Timeline format
+  const data = sortedEvents.map((event) => ({
+    title: event.name,
+    content: (
+      <div className="bg-transparent p-6">
+        <p className="text-xs md:text-sm text-primary font-semibold mb-3 uppercase tracking-wide">
+          {event.date}
+        </p>
+        <p className="text-muted-foreground text-sm md:text-base font-normal mb-6 leading-relaxed">
+          {event.description}
+        </p>
+        {/* Seamless image blending with background */}
+        <div className="w-full max-w-2xl mx-auto">
+          <div className="relative">
             <Image
-              src="/events/upcomming1.jpg"
-              alt="Crypto Trading Seminar image 1"
-              width={500}
-              height={500}
-              className="rounded-lg object-cover h-40 md:h-54 lg:h-60 w-full shadow"
+              alt={`${event.name} image`}
+              src={event.image}
+              width={800}
+              height={600}
+              className="w-full h-auto object-contain transition-transform duration-300"
+              style={{
+                aspectRatio: "auto",
+                maxHeight: "400px",
+              }}
+              priority
             />
           </div>
         </div>
-      ),
-    },
-    {
-      title: "Defy'26 - January 8th, 9th, 10th, 2026",
-      content: (
-        <div className="bg p-4 rounded-xl">
-          <p className="text-muted-foreground text-sm md:text-xl font-normal mb-4">
-            Mark your calendars for our flagship event of the new year!
-          </p>
-          <div className="grid grid-cols-2 gap-4">
-            <Image
-              src="/events/upcomming2.jpeg"
-              alt="Defy'26 image 1"
-              width={500}
-              height={500}
-              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow"
-            />
-          </div>
-        </div>
-      ),
-    },
-    {
-      title: "Solidity 101 - February 2nd, 2026",
-      content: (
-        <div className="bg p-4 rounded-xl">
-          <p className="text-muted-foreground text-sm md:text-xl font-normal mb-4">
-            Kickstart your Web3 journey with Solidity fundamentals!
-          </p>
-          <div className="grid grid-cols-2 gap-4">
-            <Image
-              src="/events/upcomming3.jpeg"
-              alt="Solidity 101 image 1"
-              width={500}
-              height={500}
-              className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow"
-            />
-          </div>
-        </div>
-      ),
-    },
-  ];
+      </div>
+    ),
+  }));
 
   return (
     <div className="min-h-screen w-full bg-background text-foreground py-8 px-4 md:px-12">

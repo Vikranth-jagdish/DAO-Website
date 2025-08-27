@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 
-export default function EventsPage() {
-  // Redirect to upcoming events as the default
+export default function UpcommingEventsPage() {
+  // Redirect to the correct path
   redirect("/events/upcomming-events");
 }

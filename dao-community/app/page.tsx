@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { TimelineDemo } from "./_components/TimeLine";
 import HeroSection from "./_components/Hero";
@@ -8,6 +9,7 @@ const HomePage = () => {
       <div className="min-h-screen">
         <HeroSection />
       </div>
+      <div className="w-full"></div>
       <div className="">
         <TimelineDemo />
       </div>

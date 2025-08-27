@@ -3,7 +3,8 @@ import { Orbitron, Share_Tech_Mono, Michroma } from "next/font/google";
 import "./globals.css";
 
 import { FooterSection } from "./_components/Footer";
-import { HeroHeader } from "./_components/NavBar";
+
+import { CardNavBar } from "./_components/CardNavBar";
 
 const orbitron = Orbitron({
   variable: "--font-orbitron",
@@ -52,7 +53,7 @@ export default function RootLayout({
         className={`${orbitron.variable} ${sharetech.variable} ${michroma.variable} antialiased`}
       >
         <div className="">
-          <HeroHeader />
+          <CardNavBar />
         </div>
         {children}
 
@@ -61,3 +62,5 @@ export default function RootLayout({
     </html>
   );
 }
+
+

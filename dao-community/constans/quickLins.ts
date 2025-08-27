@@ -5,7 +5,8 @@ export interface QuickLink {
 }
 export const quickLinks: QuickLink[] = [
   { name: "Mission & Vision", href: "/mission" },
-  { name: "Events", href: "/events" },
+  { name: "Upcoming Events", href: "/events/upcomming-events" },
+  { name: "Past Events", href: "/events/past-events" },
   { name: "Sponsors", href: "/sponsors" },
   { name: "Gallery", href: "/gallery" },
   { name: "Student Benefits", href: "/student-benefits" },
