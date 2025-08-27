@@ -119,7 +119,6 @@ export default function HeroSection() {
   );
 }
 
-// CTA component with Instagram dialog
 const HeroFollowCTA: React.FC = () => {
   const [open, setOpen] = React.useState(false);
 
@@ -140,16 +139,24 @@ const HeroFollowCTA: React.FC = () => {
         <HoverBorderGradient
           onClick={() => setOpen(true)}
           containerClassName="rounded-full"
-          className="bg-card/90 backdrop-blur-sm text-card-foreground flex items-center space-x-3 px-10 py-5 text-xl font-bold border border-primary/20 hover:border-primary/40 transition-all duration-300"
+          className="
+            bg-card/90 backdrop-blur-sm text-card-foreground
+            flex items-center space-x-2 sm:space-x-3
+            px-5 py-3 text-sm font-semibold
+            sm:px-8 sm:py-4 sm:text-lg sm:font-bold
+            md:px-10 md:py-5 md:text-xl
+            border border-primary/20 hover:border-primary/40
+            transition-all duration-300
+          "
         >
           <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            Explore & Join Our Community
+            Join Our Community
           </span>
           <motion.div
             animate={{ x: [0, 4, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >
-            <ArrowRight className="h-6 w-6 text-primary" />
+            <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-primary" />
           </motion.div>
         </HoverBorderGradient>
       </motion.div>

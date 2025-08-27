@@ -209,13 +209,7 @@ const CardNav: React.FC<CardNavProps> = ({
             </Link>
           </div>
 
-          <button
-            type="button"
-            onClick={onFollowClick}
-            className="card-nav-cta-button inline-flex md:hidden items-center justify-center border-0 rounded-[calc(0.75rem-0.2rem)] px-3 h-full font-medium cursor-pointer transition-colors duration-300 bg-primary text-primary-foreground hover:bg-primary/90 text-sm order-3"
-          >
-            Follow
-          </button>
+          {/* Removed mobile 'Follow' button */}
 
           <button
             type="button"
