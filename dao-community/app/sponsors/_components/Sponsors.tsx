@@ -16,7 +16,7 @@ const SponsorsPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       {/* Hero Section */}
-      <div className="relative overflow-hidden px-4 sm:px-6 lg:px-8 py-24 md:py-28">
+      <div className="relative overflow-hidden px-4 sm:px-6 lg:px-8 py-27 md:py-28">
         <div className="absolute inset-0"></div>
         <div className="relative max-w-7xl mx-auto text-center">
           <motion.div
